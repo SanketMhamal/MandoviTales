@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { animate, stagger, utils } from "animejs";
 import { site } from "@/content";
 import { PackageCard } from "./PackageCard";
@@ -30,6 +30,28 @@ export function PackageExplorerView({ filter, onSelect }: { filter: string; onSe
   const shown = filter === "all" ? site.packages : site.packages.filter((p) => p.category === filter);
   const listRef = useRef<HTMLUListElement>(null);
   const first = useRef(true);
+  const filtersRef = useRef<HTMLDivElement>(null);
+  const pillRef = useRef<HTMLSpanElement>(null);
+  const pillPlaced = useRef(false);
+
+  // The dark pill glides from the old choice to the new one, with a little overshoot.
+  useLayoutEffect(() => {
+    const wrap = filtersRef.current;
+    const pill = pillRef.current;
+    const chip = wrap?.querySelector<HTMLElement>('.chip[aria-pressed="true"]');
+    if (!wrap || !pill || !chip) return;
+    const to = { x: chip.offsetLeft, width: chip.offsetWidth };
+    const motion = document.documentElement.classList.contains("motion");
+    wrap.dataset.pill = "true";
+    if (!pillPlaced.current || !motion) {
+      pillPlaced.current = true;
+      pill.style.width = `${to.width}px`;
+      pill.style.transform = `translateX(${to.x}px)`;
+      return;
+    }
+    animate(pill, { x: to.x, width: to.width, duration: 800, ease: "outElastic(1, .65)", composition: "replace" });
+    animate(chip, { scale: [0.94, 1], duration: 600, ease: "outBack(3)" });
+  }, [filter]);
 
   // When the filter changes, the new set of cards sails in from the right.
   useEffect(() => {
@@ -63,7 +85,8 @@ export function PackageExplorerView({ filter, onSelect }: { filter: string; onSe
 
   return (
     <>
-      <div className="filters" role="group" aria-label="Filter cruises">
+      <div className="filters" role="group" aria-label="Filter cruises" ref={filtersRef}>
+        <span ref={pillRef} className="filters__pill" aria-hidden="true" />
         {filters.map((f) => {
           const count = f.id === "all" ? site.packages.length : site.packages.filter((p) => p.category === f.id).length;
           return (

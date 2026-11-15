@@ -51,6 +51,27 @@ export function Motion() {
       observers.push(io);
     };
 
+    /**
+     * Splits a heading into letters that can float: each letter gets its place in the line (--i),
+     * so the CSS swell travels along it like a wave. The letters rise out of the water first.
+     */
+    const float = (el: HTMLElement) => {
+      const split = splitText(el, { words: { class: "ww" }, chars: { class: "wc" } });
+      splitters.push(split);
+      (split.chars as HTMLElement[]).forEach((c, i) => c.style.setProperty("--i", String(i)));
+      return split.chars as HTMLElement[];
+    };
+    const rise = (chars: HTMLElement[], host: HTMLElement, delay = 0) =>
+      animate(chars, {
+        y: ["0.65em", "0em"],
+        opacity: [0, 1],
+        rotate: () => [utils.random(-14, 14), 0],
+        duration: 1300,
+        delay: stagger(22, { start: delay }),
+        ease: "outBack(1.6)",
+        onComplete: () => host.classList.add("wave-on"),
+      });
+
     const scope = createScope({ root: document.body }).add(() => {
       /* ── Scroll progress bar ─────────────────────────────────────── */
       const bar = document.querySelector<HTMLElement>(".progress");
@@ -69,9 +90,9 @@ export function Motion() {
         utils.set(hero.querySelectorAll(".hero__eyebrow, .hero__lede, .hero__actions, .hero__fact, .scroll-cue"), { opacity: 0 });
         const intro = createTimeline({ defaults: { ease: "outExpo" } });
         if (title) {
-          const split = splitText(title, { words: { wrap: "clip" } });
-          splitters.push(split);
-          intro.add(split.words, { y: ["110%", "0%"], rotate: [4, 0], duration: 1400, delay: stagger(55) }, 150);
+          const chars = float(title);
+          utils.set(chars, { opacity: 0 });
+          rise(chars, title, 200);
         }
         intro
           .add(hero.querySelectorAll(".hero__eyebrow, .hero__lede, .hero__actions, .hero__fact, .scroll-cue"), {
@@ -107,9 +128,9 @@ export function Motion() {
         tl.add(pkgHero.querySelectorAll(".pkg-hero__media"), { clipPath: ["inset(100% 0 0 0 round 14px)", "inset(0% 0 0 0 round 14px)"], duration: 1500, ease: "inOutQuart" }, 0)
           .add(pkgHero.querySelectorAll(".pkg-hero__media img"), { scale: [1.25, 1], duration: 2200, ease: "outQuart" }, 0);
         if (title) {
-          const split = splitText(title, { chars: { wrap: "clip" } });
-          splitters.push(split);
-          tl.add(split.chars, { y: ["105%", "0%"], duration: 1000, delay: stagger(28) }, 250);
+          const chars = float(title);
+          utils.set(chars, { opacity: 0 });
+          rise(chars, title, 300);
         }
         tl.add(pkgHero.querySelectorAll(".crumbs, .pkg-hero__lede, .pkg-facts > div, .pkg-hero__buy"), {
           opacity: [0, 1],
@@ -119,19 +140,48 @@ export function Motion() {
         }, 500);
       }
 
-      /* ── Headings: words rise out of masks ───────────────────────── */
-      document.querySelectorAll<HTMLElement>("[data-split]").forEach((el) => {
-        const chars = el.dataset.split === "chars";
-        const split = splitText(el, chars ? { chars: { wrap: "clip" } } : { words: { wrap: "clip" } });
-        splitters.push(split);
-        const parts = chars ? split.chars : split.words;
-        utils.set(parts, { y: "110%" });
-        once(el, () =>
-          animate(parts, chars
-            ? { y: ["110%", "0%"], rotate: [utils.random(-12, 12), 0], duration: 1100, delay: stagger(35), ease: "outExpo" }
-            : { y: ["110%", "0%"], duration: 1100, delay: stagger(60), ease: "outExpo" }),
-        );
+      /* ── Headings: letters float up, then ride the swell ──────────── */
+      document.querySelectorAll<HTMLElement>("[data-split], .jt__name, .cruises-hero__title").forEach((el) => {
+        const chars = float(el);
+        if (el.matches(".jt__name")) {
+          // already shown by their own animations: just ride the swell
+          el.classList.add("wave-on");
+          return;
+        }
+        utils.set(chars, { opacity: 0 });
+        once(el, () => rise(chars, el));
       });
+
+      /* ── The swell: scroll speed raises the waves in every floating line ── */
+      {
+        let lastY = window.scrollY;
+        let lastT = performance.now();
+        let swell = 0;
+        let dir = 1;
+        let raf = 0;
+        const settle = () => {
+          swell *= 0.92;
+          root.style.setProperty("--swell", swell.toFixed(3));
+          root.style.setProperty("--swell-dir", String(dir));
+          raf = swell > 0.01 ? requestAnimationFrame(settle) : 0;
+          if (!raf) root.style.setProperty("--swell", "0");
+        };
+        const onScrollSwell = () => {
+          const now = performance.now();
+          const dy = window.scrollY - lastY;
+          const v = Math.abs(dy) / Math.max(16, now - lastT);
+          lastY = window.scrollY;
+          lastT = now;
+          if (Math.abs(dy) > 1) dir = dy > 0 ? 1 : -1;
+          swell = Math.min(1, Math.max(swell, v * 0.6));
+          if (!raf) raf = requestAnimationFrame(settle);
+        };
+        window.addEventListener("scroll", onScrollSwell, { passive: true });
+        cleanups.push(() => {
+          window.removeEventListener("scroll", onScrollSwell);
+          cancelAnimationFrame(raf);
+        });
+      }
 
       /* ── Reveal blocks ───────────────────────────────────────────── */
       document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {

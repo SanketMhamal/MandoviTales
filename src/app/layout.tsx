@@ -12,6 +12,7 @@ import "./globals.css";
 import "./motion.css";
 import "./journey.css";
 import "./watercolour.css";
+import "./waves.css";
 
 /* Headings: a soft, slightly wonky serif that sits well beside ink and watercolour. */
 const serif = Fraunces({

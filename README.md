@@ -30,6 +30,7 @@ The client’s photos load from Cloudinary. See [CLOUDINARY.md](CLOUDINARY.md) f
 
 - **Watercolour:** paper grain, washes and painted photo edges come from SVG textures in `public/textures` (`paper.svg`, `wash-*.svg`, `edge-*.svg`), applied in `src/app/watercolour.css`.
 - **Ink drawings:** original pen-and-wash illustrations of Goa (band boat, Goan house, church, fisherman, palm, fish, crab, sun, gulls) in `src/components/Ink.tsx`. Wrap one in `data-draw` to have its lines draw themselves on screen; `data-float`, `data-sway`, `data-drift` and `data-spin` add idle motion.
+- **On the water:** headings float letter by letter on a swell that grows with scroll speed (`--swell`, set in `Motion.tsx`, used in `src/app/waves.css`); nav letters hop on hover with wavy underlines, a boat sails under the current section, the header ducks away on scroll, and the phone menu comes in like a tide.
 - **Type:** Fraunces for headings (soft, with the wonky italic for names), Hanken Grotesk for text, Caveat for short hand-lettered labels.
 
 ## Pages

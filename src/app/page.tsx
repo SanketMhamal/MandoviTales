@@ -65,7 +65,7 @@ export default function Home() {
         <div className="wrap">
           <p className="statement__text" data-highlight>
             {statementWords(statement.text).map(({ word, accent }, i) => (
-              <span key={i} className={accent ? "hl-word hl-accent" : "hl-word"}>
+              <span key={i} className={accent ? "hl-word hl-accent" : "hl-word"} style={{ "--i": i } as React.CSSProperties}>
                 {word}{" "}
               </span>
             ))}
@@ -101,8 +101,8 @@ export default function Home() {
         <div className="marquee__track">
           {[0, 1].map((copy) => (
             <ul key={copy}>
-              {marquee.map((item) => (
-                <li key={item}>
+              {marquee.map((item, i) => (
+                <li key={item} style={{ "--i": i } as React.CSSProperties}>
                   {item}
                   <Boat className="marquee__boat" />
                 </li>
