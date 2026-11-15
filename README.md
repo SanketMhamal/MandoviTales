@@ -58,4 +58,4 @@ src/
 
 ## Deploy
 
-Any Next.js host works. On Vercel: import the repository, add `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` under Environment variables, deploy.
+The site is a static export hosted on Cloudflare Pages (free for commercial use). Step-by-step setup, the client's domain and everyday updates: [DEPLOY.md](DEPLOY.md).
