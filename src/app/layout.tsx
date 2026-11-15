@@ -9,6 +9,7 @@ import { Motion } from "@/components/Motion";
 import { Voyage } from "@/components/Voyage";
 import "./globals.css";
 import "./motion.css";
+import "./journey.css";
 
 const serif = Newsreader({
   variable: "--font-serif",

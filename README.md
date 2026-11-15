@@ -26,6 +26,10 @@ Open <http://localhost:8000>.
 
 The client’s photos load from Cloudinary. See [CLOUDINARY.md](CLOUDINARY.md) for the setup. Until then the site uses stand-in photos from Wikimedia Commons in `public/images`.
 
+## The river journey
+
+The "Down the Mandovi" section flies over a satellite image of the estuary (`public/images/mandovi-satellite.jpg`, Sentinel-2 cloudless 2016 by EOX, CC BY 4.0; keep its credit line). Its stops, their lines and photos, and the boat's path are under `route` in `src/content/site.ts`; map positions are pixels on that image.
+
 ## Structure
 
 ```

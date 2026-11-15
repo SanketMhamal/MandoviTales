@@ -11,9 +11,11 @@ type Props = PhotoType & {
   priority?: boolean;
   /** Inside a link that already names the picture, e.g. a card. */
   decorative?: boolean;
+  /** Load straight away (for pictures inside 3D scenes, where lazy loading can miss them). */
+  eager?: boolean;
 };
 
-export function Photo({ image, alt, sizes, className, aspect, priority, decorative }: Props) {
+export function Photo({ image, alt, sizes, className, aspect, priority, decorative, eager }: Props) {
   const { src, srcSet } = imageSet(image, aspect);
   return (
     <img
@@ -24,7 +26,7 @@ export function Photo({ image, alt, sizes, className, aspect, priority, decorati
       className={className}
       width={1600}
       height={1067}
-      loading={priority ? "eager" : "lazy"}
+      loading={priority || eager ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : undefined}
       decoding="async"
     />

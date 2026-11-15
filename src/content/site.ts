@@ -376,30 +376,72 @@ export const site = {
     ],
   },
 
-  /* ── The route section ─────────────────────────────────────────────────── */
+  /* ── The river journey (fly down the Mandovi as you scroll) ────────────── */
+  /*
+   * The ground is a satellite image of the estuary. `at` is where a stop sits on it, in
+   * pixels of public/images/mandovi-satellite.jpg (2048 × 1280). The boat follows `path`.
+   * Each stop shows its lines on the left and its photos standing on the map.
+   */
   route: {
-    title: "What you’ll see on the river",
-    intro: "Panjim to the sea is twenty minutes downriver; the islands are an hour up.",
+    title: "Down the Mandovi",
+    intro: "From the mangrove islands to the open sea: scroll to sail the river.",
+    mapAlt: "Satellite view of the Mandovi estuary from Divar island to Fort Aguada",
+    mapCredit: "Sentinel-2 cloudless 2016 by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2016), CC BY 4.0",
+    path: [
+      [1997, 256], [1843, 389], [1690, 532], [1536, 625], [1420, 615], [1250, 640], [1120, 680], [1000, 670],
+      [900, 640], [850, 680], [800, 740], [700, 790], [560, 800], [400, 840], [200, 900], [60, 960],
+    ] as [number, number][],
     stops: [
       {
+        name: "Chorao and Divar",
+        lines: ["Upriver, the Mandovi", "slows into mangrove creeks.", "Herons fish the shallows", "of the Salim Ali sanctuary."],
+        at: [1330, 500] as [number, number],
+        photos: [
+          { image: "stand-in/f96460765", alt: "A fisherman paddling a canoe on the Mandovi" },
+          { image: "stand-in/f31036758", alt: "Still backwater with mangroves at the water’s edge" },
+        ],
+      },
+      {
         name: "Panjim waterfront",
-        text: "The old Portuguese quarter, the secretariat and the church steps.",
-        photo: { image: "stand-in/f110120425", alt: "The white church of Our Lady of the Immaculate Conception, Panjim" },
+        lines: ["The capital comes down to the water:", "the old secretariat,", "the white church on its steps,", "and our jetty."],
+        at: [1050, 725] as [number, number],
+        photos: [
+          { image: "stand-in/f110120425", alt: "The white church of Our Lady of the Immaculate Conception, Panjim" },
+          { image: "stand-in/f64185538", alt: "A boat crossing the wide Mandovi river at Panjim" },
+        ],
       },
       {
         name: "Reis Magos",
-        text: "The red-walled fort on the Betim bank, built in 1551.",
-        photo: { image: "stand-in/f150084598", alt: "The wide Mandovi river seen from the Porvorim hills" },
+        lines: ["On the Betim bank,", "a red-walled fort from 1551", "watches every boat", "that leaves the city."],
+        at: [905, 600] as [number, number],
+        photos: [
+          { image: "stand-in/f150084598", alt: "The wide Mandovi river seen from the Porvorim hills" },
+          { image: "stand-in/f57513652", alt: "A wide green stretch of a Goan river" },
+        ],
+      },
+      {
+        name: "Miramar",
+        lines: ["The river widens.", "Miramar’s long beach", "turns gold", "as the sun goes down."],
+        at: [790, 905] as [number, number],
+        photos: [
+          { image: "stand-in/f105192704", alt: "Pink and orange sky over Goa at sunset, palms in silhouette" },
+          { image: "stand-in/f49814193", alt: "A small boat on a quiet river lined with trees" },
+        ],
       },
       {
         name: "Fort Aguada",
-        text: "The lighthouse at the river mouth, where the dolphins feed.",
-        photo: { image: "stand-in/f88710219", alt: "The old lighthouse on Fort Aguada" },
+        lines: ["At the mouth,", "the lighthouse on the headland.", "Here the dolphins feed", "in the morning tide."],
+        at: [420, 790] as [number, number],
+        photos: [
+          { image: "stand-in/f88710219", alt: "The old lighthouse on Fort Aguada" },
+          { image: "stand-in/f53428483", alt: "The green Aguada headland seen from the sea" },
+        ],
       },
       {
-        name: "Chorao and Divar",
-        text: "Mangrove islands upriver, home to the Salim Ali bird sanctuary.",
-        photo: { image: "stand-in/f96460765", alt: "A fisherman paddling a canoe on the Mandovi" },
+        name: "The Arabian Sea",
+        lines: ["And then nothing", "but the open water", "and the long way", "back to the lights of Panjim."],
+        at: [170, 980] as [number, number],
+        photos: [{ image: "stand-in/f95250912", alt: "A river mouth meeting the sea on the Goan coast" }],
       },
     ],
   },

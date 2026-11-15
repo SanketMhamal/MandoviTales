@@ -7,6 +7,7 @@ import { PackageExplorer, PackageExplorerView } from "@/components/PackageExplor
 import { Enquiry } from "@/components/Enquiry";
 import { MobileBar } from "@/components/MobileBar";
 import { Chapters } from "@/components/Chapters";
+import { Journey } from "@/components/Journey";
 import { Waves, Boat } from "@/components/Sea";
 import { ArrowIcon, PinIcon, WhatsAppIcon } from "@/components/icons";
 
@@ -16,7 +17,7 @@ function statementWords(text: string) {
 }
 
 export default function Home() {
-  const { hero, statement, marquee, cruisesSection, onBoard, route, enquiry, visit, faq, closing, booking } = site;
+  const { hero, statement, marquee, cruisesSection, onBoard, enquiry, visit, faq, closing, booking } = site;
 
   return (
     <>
@@ -125,41 +126,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Route */}
-      <section id="route" className="section" aria-labelledby="route-title" data-port="The route">
-        <div className="wrap">
-          <header className="section__head section__head--split">
-            <h2 id="route-title" className="h2" data-split>
-              {route.title}
-            </h2>
-            <p className="section__intro" data-reveal>
-              {route.intro}
-            </p>
-          </header>
-          <div className="river" data-river>
-            <svg className="river__svg" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
-              <path className="river__path" d="M0 20 C 60 4, 120 36, 180 20 S 300 4, 360 20 S 480 36, 540 20 S 660 4, 720 20 S 840 36, 900 20 S 980 10, 1000 20" />
-            </svg>
-            <div className="river__boat" aria-hidden="true">
-              <Boat />
-            </div>
-            <ol className="route">
-              {route.stops.map((stop, i) => (
-                <li key={stop.name} className="route__stop">
-                  <div className="route__marker" aria-hidden="true">
-                    <span>{String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <div className="route__media" data-parallax="8">
-                    <Photo {...stop.photo} aspect="4:5" sizes="(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw" />
-                  </div>
-                  <h3 className="h3">{stop.name}</h3>
-                  <p>{stop.text}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
+      {/* Down the river: fly-over of the estuary */}
+      <Journey />
 
       {/* Enquiry */}
       <section id="plan" className="section section--river" aria-labelledby="plan-title" data-port="Plan">
