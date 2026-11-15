@@ -42,3 +42,6 @@ next-env.d.ts
 
 # design-check working files
 .taste-skill/
+
+# playwright-cli session logs
+.playwright-cli/
