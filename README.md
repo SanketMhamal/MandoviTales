@@ -58,4 +58,4 @@ src/
 
 ## Deploy
 
-The site is a static export hosted on Cloudflare Pages (free for commercial use). Step-by-step setup, the client's domain and everyday updates: [DEPLOY.md](DEPLOY.md).
+The site is a static export hosted on Cloudflare as static assets (free, commercial use allowed). Step-by-step setup, the client's domain and everyday updates: [DEPLOY.md](DEPLOY.md).

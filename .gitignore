@@ -45,3 +45,6 @@ next-env.d.ts
 
 # playwright-cli session logs
 .playwright-cli/
+
+# wrangler
+.wrangler/

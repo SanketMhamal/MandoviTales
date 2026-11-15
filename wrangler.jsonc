@@ -1,0 +1,13 @@
+// Cloudflare Workers config: serve the static export in ./out as static assets (no server code).
+// Cloudflare runs `npm run build`, then `npx wrangler deploy`, which uploads ./out.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mandovitales",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    // /cruises serves cruises.html; unknown paths get out/404.html with a 404 status
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
