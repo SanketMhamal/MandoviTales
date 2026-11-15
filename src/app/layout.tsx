@@ -1,21 +1,32 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Hanken_Grotesk, Newsreader } from "next/font/google";
+import { Caveat, Fraunces, Hanken_Grotesk } from "next/font/google";
 import { site } from "@/content";
 import { imageSet } from "@/lib/images";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Motion } from "@/components/Motion";
 import { Voyage } from "@/components/Voyage";
+import { InkDefs } from "@/components/Ink";
 import "./globals.css";
 import "./motion.css";
 import "./journey.css";
+import "./watercolour.css";
 
-const serif = Newsreader({
+/* Headings: a soft, slightly wonky serif that sits well beside ink and watercolour. */
+const serif = Fraunces({
   variable: "--font-serif",
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
+  axes: ["opsz", "SOFT", "WONK"],
+  display: "swap",
+});
+
+/* Hand-lettered notes and labels, used sparingly. */
+const hand = Caveat({
+  variable: "--font-hand",
+  subsets: ["latin"],
+  weight: ["500", "600"],
   display: "swap",
 });
 
@@ -46,14 +57,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5efe4",
+  themeColor: "#f4eddf",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" className={`${serif.variable} ${sans.variable} ${hand.variable}`} suppressHydrationWarning>
       <head>
         {/* Turn on the motion layer before first paint, unless the visitor prefers reduced motion. */}
         <Script id="motion-flag" strategy="beforeInteractive">
@@ -65,6 +76,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        <InkDefs />
         <Header />
         <main id="main">{children}</main>
         <Footer />

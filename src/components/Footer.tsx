@@ -1,10 +1,26 @@
 import Link from "next/link";
 import { site } from "@/content";
 import { whatsappLink } from "@/lib/format";
+import { InkChurch, InkFisherman, InkGoanHouse, InkPalm } from "./Ink";
 
 export function Footer() {
   const year = new Date().getFullYear();
   return (
+    <>
+      <div className="wrap footer-scene" aria-hidden="true">
+        <div data-draw>
+          <InkGoanHouse />
+        </div>
+        <div data-draw data-sway>
+          <InkPalm />
+        </div>
+        <div data-draw>
+          <InkChurch />
+        </div>
+        <div data-draw>
+          <InkFisherman />
+        </div>
+      </div>
     <footer className="footer">
       <div className="wrap footer__grid">
         <div>
@@ -51,5 +67,6 @@ export function Footer() {
         {site.footer.credits && <p className="footer__credits">{site.footer.credits}</p>}
       </div>
     </footer>
+    </>
   );
 }

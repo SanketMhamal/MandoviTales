@@ -1,0 +1,660 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   WATERCOLOUR LAYER — paper, washes, painted edges, ink drawings, type
+   Textures live in public/textures; drawings in src/components/Ink.tsx.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg: #f4eddf;
+  --surface: #ede2cc;
+  --card: #fbf7ee;
+  --hand: var(--font-hand), "Segoe Print", "Bradley Hand", cursive;
+  --paper: url("/textures/paper.svg");
+  --edge-1: url("/textures/edge-1.svg");
+  --edge-2: url("/textures/edge-2.svg");
+  --edge-bottom: url("/textures/edge-bottom.svg");
+}
+
+/* ─── Paper ───────────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg);
+  background-image: var(--paper);
+  background-size: 480px 480px;
+}
+
+.section--surface,
+.statement,
+.marquee {
+  background-color: transparent;
+}
+
+.section--surface {
+  background-image: linear-gradient(rgba(233, 220, 196, 0.55), rgba(233, 220, 196, 0.55)), var(--paper);
+  background-size: auto, 480px 480px;
+}
+
+.header[data-solid="true"],
+.mobile-menu,
+.mobile-bar {
+  background-color: rgba(244, 237, 223, 0.95);
+  background-image: var(--paper);
+  background-size: 480px 480px;
+}
+
+/* ─── Type ────────────────────────────────────────────────────────────────── */
+/* Fraunces: soft corners for headings, the wonky italic for names and accents. */
+.h2,
+.h3,
+.hero__title,
+.pkg-hero__title,
+.closing__title,
+.visit__place,
+.statement__text,
+.card__title,
+.jt__name,
+.chapters .h3,
+.journey__title,
+.logo__word,
+.footer__name,
+.mobile-menu li a,
+.marquee li,
+.faq__item summary,
+.price__amount,
+.enquiry__total {
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+}
+
+.h2,
+.hero__title,
+.pkg-hero__title,
+.closing__title,
+.statement__text {
+  font-weight: 380;
+  letter-spacing: -0.02em;
+}
+
+.hero__title {
+  font-weight: 340;
+}
+
+.h3,
+.card__title {
+  font-weight: 450;
+}
+
+.hl-accent,
+.visit__place,
+.jt__name,
+.marquee li,
+.cruises-hero em,
+.hero__title em {
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+/* Hand-lettered labels: short, never body text. */
+.eyebrow,
+.hand,
+.jt__count,
+.chapters__time,
+.bb__label,
+.card__badge,
+.journey__intro,
+.plan__reassure,
+.chip__count {
+  font-family: var(--hand);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.eyebrow {
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hero__eyebrow {
+  font-size: 1.625rem;
+}
+
+.jt__count,
+.chapters__time {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card__badge {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 2px 12px 4px;
+}
+
+.chip__count {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.journey__intro {
+  font-size: 1.375rem;
+  line-height: 1.15;
+  color: var(--accent);
+}
+
+.plan__reassure {
+  font-size: 1.375rem;
+  line-height: 1.25;
+}
+
+.bb__label {
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ─── Washes behind headings ──────────────────────────────────────────────── */
+.section__head,
+.journey__head,
+.cruises-hero__head {
+  position: relative;
+  isolation: isolate;
+}
+
+.section__head::before,
+.cruises-hero__head::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -40px;
+  top: -34px;
+  width: min(520px, 80vw);
+  height: calc(100% + 44px);
+  max-height: 200px;
+  background: var(--wash, url("/textures/wash-ochre.svg")) center / 100% 100% no-repeat;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+#cruises { --wash: url("/textures/wash-teal.svg"); }
+#on-board { --wash: url("/textures/wash-rose.svg"); }
+#faq .faq { --wash: url("/textures/wash-green.svg"); }
+.pkg-detail { --wash: url("/textures/wash-teal.svg"); }
+
+#faq .faq > .h2 {
+  position: relative;
+  isolation: isolate;
+}
+
+#faq .faq > .h2::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -40px -60px -40px -48px;
+  background: url("/textures/wash-green.svg") center / 100% 100% no-repeat;
+  opacity: 0.7;
+}
+
+/* ─── Painted edges on photographs ────────────────────────────────────────── */
+.onboard__media,
+.visit__media,
+.pkg-gallery__item,
+.journey__static-photo,
+.pkg-hero__media {
+  border-radius: 0;
+  -webkit-mask: var(--edge-1) 0 0 / 100% 100% no-repeat;
+  mask: var(--edge-1) 0 0 / 100% 100% no-repeat;
+}
+
+.onboard__item:nth-child(2) .onboard__media,
+.pkg-gallery__item:nth-child(2) {
+  -webkit-mask-image: var(--edge-2);
+  mask-image: var(--edge-2);
+}
+
+/* Cards: paper slips with a painted picture at the top */
+.card {
+  border: 0;
+  border-radius: 4px;
+  background: var(--card);
+  background-image: var(--paper);
+  background-size: 480px 480px;
+  box-shadow: 0 1px 0 rgba(18, 38, 43, 0.06), 0 14px 30px -22px rgba(18, 38, 43, 0.45);
+}
+
+.card__media {
+  margin: 12px 12px 0;
+  background: transparent;
+  -webkit-mask: var(--edge-1) 0 0 / 100% 100% no-repeat;
+  mask: var(--edge-1) 0 0 / 100% 100% no-repeat;
+}
+
+li:nth-child(even) > .card .card__media {
+  -webkit-mask-image: var(--edge-2);
+  mask-image: var(--edge-2);
+}
+
+.card__foot {
+  border-top: 1px dashed rgba(18, 38, 43, 0.22);
+}
+
+.card__doodle {
+  position: absolute;
+  right: 14px;
+  top: calc(100% + 0px);
+  width: 70px;
+  pointer-events: none;
+}
+
+.card__body {
+  position: relative;
+}
+
+.card__ink {
+  position: absolute;
+  top: -34px;
+  right: 18px;
+  width: 64px;
+  transform: rotate(-6deg);
+  transition: transform 0.4s var(--ease);
+  pointer-events: none;
+}
+
+.card:hover .card__ink {
+  transform: rotate(4deg) translateY(-4px);
+}
+
+/* Hero: the photograph ends in a brushed edge on the paper */
+.hero__bg {
+  -webkit-mask: linear-gradient(#000, #000) top / 100% calc(100% - 60px) no-repeat, var(--edge-bottom) bottom / 100% 90px no-repeat;
+  mask: linear-gradient(#000, #000) top / 100% calc(100% - 60px) no-repeat, var(--edge-bottom) bottom / 100% 90px no-repeat;
+}
+
+.hero {
+  background: transparent;
+}
+
+.hero__ink {
+  position: absolute;
+  right: clamp(16px, 6vw, 110px);
+  bottom: clamp(40px, 7vw, 90px);
+  z-index: 2;
+  width: clamp(200px, 26vw, 400px);
+  pointer-events: none;
+}
+
+.hero__ink .ink {
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+}
+
+.hero__ink .ink__wash {
+  opacity: 0.95;
+}
+
+@media (max-width: 767px) {
+  .hero__ink {
+    display: none;
+  }
+}
+
+/* ─── Ink drawings ────────────────────────────────────────────────────────── */
+.ink {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ink__lines * {
+  vector-effect: non-scaling-stroke;
+}
+
+.ink__wash > * {
+  mix-blend-mode: multiply;
+}
+
+/* Statement: sun and gulls in the margin */
+.statement {
+  position: relative;
+  overflow: hidden;
+}
+
+.statement__sun {
+  position: absolute;
+  right: clamp(16px, 8vw, 140px);
+  top: clamp(60px, 14vh, 160px);
+  width: clamp(90px, 11vw, 160px);
+}
+
+.statement__gulls {
+  position: absolute;
+  right: clamp(140px, 22vw, 380px);
+  top: clamp(100px, 22vh, 230px);
+  width: clamp(90px, 10vw, 150px);
+}
+
+.statement__boat {
+  position: absolute;
+  right: clamp(16px, 6vw, 100px);
+  bottom: clamp(40px, 10vh, 120px);
+  width: clamp(220px, 28vw, 420px);
+}
+
+@media (max-width: 767px) {
+  .statement__boat {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 80%;
+    margin: 32px 0 0 auto;
+  }
+  .statement {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* On board: a palm leans in */
+#on-board {
+  position: relative;
+  overflow: hidden;
+}
+
+.onboard__palm {
+  position: absolute;
+  right: -10px;
+  top: 40px;
+  width: clamp(90px, 10vw, 150px);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+/* Visit: the Goan house in place of a stock photograph */
+.visit__art {
+  position: relative;
+  isolation: isolate;
+}
+
+.visit__art::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 4% -6% 10% -8%;
+  background: url("/textures/wash-ochre.svg") center / 100% 100% no-repeat;
+  opacity: 0.8;
+}
+
+/* FAQ: fisherman and crab */
+.faq__art {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+  max-width: 340px;
+}
+
+.faq__crab {
+  width: 96px;
+  margin-left: auto;
+}
+
+@media (max-width: 1023px) {
+  .faq__art {
+    display: none;
+  }
+}
+
+/* Closing: ink sun over a wash, not a gradient disc */
+.closing {
+  background-color: var(--accent);
+  background-image: linear-gradient(rgba(168, 75, 35, 0.92), rgba(168, 75, 35, 0.92)), var(--paper);
+  background-size: auto, 480px 480px;
+}
+
+.closing__sun {
+  background: url("/textures/wash-ochre.svg") center / 100% 100% no-repeat;
+  border-radius: 0;
+  opacity: 0.9;
+}
+
+.closing__ink {
+  position: absolute;
+  right: clamp(30px, 14%, 220px);
+  top: 50%;
+  width: clamp(120px, 14vw, 200px);
+  transform: translateY(-60%);
+}
+
+.closing__ink .ink__lines {
+  stroke: #fff6ea;
+}
+
+/* Footer: a skyline on the paper above the dark band */
+.footer-scene {
+  display: grid;
+  grid-template-columns: 1.1fr 0.5fr 1.4fr 1fr;
+  align-items: end;
+  gap: clamp(8px, 2vw, 32px);
+  padding-top: 64px;
+  margin-bottom: -6px;
+}
+
+.footer-scene > :nth-child(2) {
+  align-self: end;
+}
+
+@media (max-width: 767px) {
+  .footer-scene {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-scene > :nth-child(2),
+  .footer-scene > :nth-child(4) {
+    display: none;
+  }
+}
+
+/* Chips and buttons: a touch of hand */
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+}
+
+.btn--ghost {
+  border-style: solid;
+  border-color: rgba(18, 38, 43, 0.35);
+}
+
+/* Journey: ink pieces stand on the map like the photos */
+.bb__ink {
+  position: absolute;
+  bottom: 0;
+  left: -170px;
+  width: 340px;
+  transform-origin: 50% 100%;
+}
+
+.journey,
+.motion .journey__stage {
+  --mist: #f4eddf;
+}
+
+.motion .journey__stage {
+  background-image:
+    radial-gradient(120% 70% at 50% 100%, rgba(244, 237, 223, 0) 40%, var(--mist) 85%),
+    var(--paper);
+  background-size: auto, 480px 480px;
+}
+
+.journey__mist {
+  background:
+    linear-gradient(180deg, var(--mist) 0%, var(--mist) 16%, rgba(244, 237, 223, 0.85) 30%, rgba(244, 237, 223, 0) 55%),
+    linear-gradient(90deg, rgba(244, 237, 223, 0.96) 0%, rgba(244, 237, 223, 0.85) 24%, rgba(244, 237, 223, 0) 42%, rgba(244, 237, 223, 0) 80%, rgba(244, 237, 223, 0.7) 100%);
+}
+
+.journey__minimap {
+  border-radius: 2px;
+  -webkit-mask: var(--edge-2) 0 0 / 100% 100% no-repeat;
+  mask: var(--edge-2) 0 0 / 100% 100% no-repeat;
+  box-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .journey__mist {
+    background: linear-gradient(180deg, var(--mist) 0%, rgba(244, 237, 223, 0.92) 42%, rgba(244, 237, 223, 0) 62%);
+  }
+}
+
+/* ─── Cruises page ────────────────────────────────────────────────────────── */
+.cruises-hero {
+  padding: calc(var(--header-h) + clamp(40px, 6vw, 80px)) 0 clamp(32px, 4vw, 56px);
+}
+
+.cruises-hero__grid {
+  display: grid;
+  gap: 32px;
+  align-items: end;
+}
+
+@media (min-width: 1024px) {
+  .cruises-hero__grid {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.cruises-hero__head {
+  display: grid;
+  gap: 16px;
+}
+
+.cruises-hero__title {
+  font-family: var(--font-display);
+  font-weight: 360;
+  font-size: clamp(3rem, 1.6rem + 5.4vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+  text-wrap: balance;
+}
+
+.cruises-hero__title em {
+  color: var(--accent);
+}
+
+.cruises-hero__lede {
+  max-width: 48ch;
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.compare-wrap {
+  overflow-x: auto;
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+}
+
+.compare caption {
+  text-align: left;
+  font-family: var(--hand);
+  font-size: 1.375rem;
+  color: var(--accent);
+  padding-bottom: 8px;
+}
+
+.compare th,
+.compare td {
+  padding: 14px 16px 14px 0;
+  border-bottom: 1px dashed rgba(18, 38, 43, 0.22);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.compare thead th {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.compare tbody th a {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 450;
+  font-variation-settings: "SOFT" 100;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.3s var(--ease);
+}
+
+.compare tbody th a:hover {
+  background-size: 100% 1px;
+}
+
+.compare td.compare__price {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+}
+
+.compare td.compare__book a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: -12px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.compare td.compare__book a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.cruises-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.section--tight {
+  min-height: 0;
+  padding-top: 0;
+}
+
+main:has(.cruises-hero) .section {
+  min-height: 0;
+}
+
+.cruises-hero__art {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  max-width: 440px;
+  justify-self: end;
+  width: 100%;
+}
+
+.cruises-hero__art > :first-child {
+  width: 34%;
+  margin-right: 30%;
+}
+
+@media (max-width: 1023px) {
+  .cruises-hero__art {
+    max-width: 320px;
+  }
+}
+
+/* Ink that draws itself: hidden until the motion layer draws it */
+.motion [data-draw] .ink__wash {
+  opacity: 0;
+}
+
+/* Nothing on the page may push it sideways (clip, unlike hidden, keeps sticky sections working). */
+html,
+body {
+  overflow-x: clip;
+}

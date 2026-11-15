@@ -26,9 +26,21 @@ Open <http://localhost:8000>.
 
 The client’s photos load from Cloudinary. See [CLOUDINARY.md](CLOUDINARY.md) for the setup. Until then the site uses stand-in photos from Wikimedia Commons in `public/images`.
 
+## Look and feel
+
+- **Watercolour:** paper grain, washes and painted photo edges come from SVG textures in `public/textures` (`paper.svg`, `wash-*.svg`, `edge-*.svg`), applied in `src/app/watercolour.css`.
+- **Ink drawings:** original pen-and-wash illustrations of Goa (band boat, Goan house, church, fisherman, palm, fish, crab, sun, gulls) in `src/components/Ink.tsx`. Wrap one in `data-draw` to have its lines draw themselves on screen; `data-float`, `data-sway`, `data-drift` and `data-spin` add idle motion.
+- **Type:** Fraunces for headings (soft, with the wonky italic for names), Hanken Grotesk for text, Caveat for short hand-lettered labels.
+
+## Pages
+
+- `/`: home.
+- `/cruises`: every cruise with filters and a side-by-side comparison table.
+- `/packages/<slug>`: one page per cruise.
+
 ## The river journey
 
-The "Down the Mandovi" section flies over a vector map of the estuary (`public/images/mandovi-map.svg`), traced from Sentinel-2 cloudless 2016 imagery by EOX (CC BY 4.0; keep its credit line). Its stops, their lines and photos, and the boat's path are under `route` in `src/content/site.ts`; map positions are units on that map.
+The "Down the Mandovi" section flies over a watercolour map of the estuary (`public/images/mandovi-watercolour.webp`), traced and painted from Sentinel-2 cloudless 2016 imagery by EOX (CC BY 4.0; keep its credit line). Its stops, their lines and photos, and the boat's path are under `route` in `src/content/site.ts`; map positions are in map units (2048 × 1280). How the map is made: [scripts/map/README.md](scripts/map/README.md).
 
 ## Structure
 

@@ -10,6 +10,7 @@ import { Chapters } from "@/components/Chapters";
 import { Journey } from "@/components/Journey";
 import { Waves, Boat } from "@/components/Sea";
 import { ArrowIcon, PinIcon, WhatsAppIcon } from "@/components/icons";
+import { InkBandBoat, InkCrab, InkFisherman, InkGoanHouse, InkGulls, InkPalm, InkSun } from "@/components/Ink";
 
 /** "the sky turns *pink*" → words, with the starred ones marked for the accent colour. */
 function statementWords(text: string) {
@@ -47,11 +48,20 @@ export default function Home() {
           <span>{hero.scrollCue}</span>
           <span className="scroll-cue__line" aria-hidden="true" />
         </a>
+        <div className="hero__ink" data-float>
+          <InkBandBoat />
+        </div>
         <Waves className="hero__waves" />
       </section>
 
       {/* Statement */}
       <section id="statement" className="statement" aria-label="About the cruise">
+        <div className="statement__sun" data-draw>
+          <InkSun />
+        </div>
+        <div className="statement__gulls" data-drift>
+          <InkGulls />
+        </div>
         <div className="wrap">
           <p className="statement__text" data-highlight>
             {statementWords(statement.text).map(({ word, accent }, i) => (
@@ -77,6 +87,12 @@ export default function Home() {
           <Suspense fallback={<PackageExplorerView filter="all" />}>
             <PackageExplorer />
           </Suspense>
+          <div className="cruises-more">
+            <Link href="/cruises" className="btn btn--ghost" data-magnetic>
+              {cruisesSection.allCta}
+              <ArrowIcon />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -101,6 +117,9 @@ export default function Home() {
 
       {/* On board */}
       <section id="on-board" className="section section--surface" aria-labelledby="onboard-title" data-port="On board">
+        <div className="onboard__palm" data-sway>
+          <InkPalm />
+        </div>
         <div className="wrap">
           <header className="section__head section__head--split">
             <h2 id="onboard-title" className="h2" data-split>
@@ -177,8 +196,8 @@ export default function Home() {
               {visit.mapsCta}
             </a>
           </div>
-          <div className="visit__media" data-develop>
-            <Photo {...visit.photo} aspect="1:1" sizes="(min-width: 1024px) 60vw, 100vw" />
+          <div className="visit__art" data-draw>
+            <InkGoanHouse />
           </div>
         </div>
       </section>
@@ -186,9 +205,17 @@ export default function Home() {
       {/* FAQ */}
       <section id="faq" className="section section--surface" aria-labelledby="faq-title" data-port="FAQ">
         <div className="wrap faq">
-          <h2 id="faq-title" className="h2" data-split>
-            {faq.title}
-          </h2>
+          <div>
+            <h2 id="faq-title" className="h2" data-split>
+              {faq.title}
+            </h2>
+            <div className="faq__art" data-draw>
+              <InkFisherman />
+              <div className="faq__crab">
+                <InkCrab />
+              </div>
+            </div>
+          </div>
           <div className="faq__list" data-reveal="stagger">
             {faq.items.map((item) => (
               <details key={item.q} className="faq__item">
@@ -206,6 +233,9 @@ export default function Home() {
       {/* Closing */}
       <section className="closing" aria-labelledby="closing-title" data-port="Home port">
         <div className="closing__sun" aria-hidden="true" />
+        <div className="closing__ink" data-spin>
+          <InkSun />
+        </div>
         <div className="wrap closing__inner">
           <h2 id="closing-title" className="closing__title" data-split>
             {closing.title}

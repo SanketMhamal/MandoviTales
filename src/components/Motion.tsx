@@ -296,6 +296,35 @@ export function Motion() {
         });
       }
 
+      /* ── Ink drawings: lines draw themselves, then the wash soaks in ── */
+      document.querySelectorAll<HTMLElement>("[data-draw]").forEach((wrap) => {
+        const lines = wrap.querySelectorAll<SVGGeometryElement>(".ink__lines path, .ink__lines circle, .ink__lines ellipse");
+        if (!lines.length) return;
+        const wash = wrap.querySelectorAll(".ink__wash");
+        const drawn = createDrawable(lines);
+        utils.set(drawn, { draw: "0 0" });
+        once(wrap, () =>
+          createTimeline()
+            .add(drawn, { draw: ["0 0", "0 1"], duration: 1400, delay: stagger(28), ease: "inOutQuad" }, 0)
+            .add(wash, { opacity: [0, 0.88], duration: 1200, ease: "outQuad" }, 700),
+        );
+      });
+
+      /* ── Idle life: boats bob, palms sway, gulls drift, the sun turns ── */
+      document.querySelectorAll<HTMLElement>("[data-float]").forEach((el, i) =>
+        animate(el, { y: [-7, 7], rotate: [-1.6, 1.6], duration: 3000 + i * 300, alternate: true, loop: true, ease: "inOutSine" }),
+      );
+      document.querySelectorAll<HTMLElement>("[data-sway]").forEach((el) => {
+        el.style.transformOrigin = "50% 100%";
+        animate(el, { rotate: [-3, 3], duration: 4200, alternate: true, loop: true, ease: "inOutSine" });
+      });
+      document.querySelectorAll<HTMLElement>("[data-drift]").forEach((el) =>
+        animate(el, { x: [-24, 24], y: [-8, 8], duration: 6400, alternate: true, loop: true, ease: "inOutSine" }),
+      );
+      document.querySelectorAll<HTMLElement>("[data-spin]").forEach((el) =>
+        animate(el.querySelector(".ink") ?? el, { rotate: 360, duration: 60000, loop: true, ease: "linear" }),
+      );
+
       /* ── FAQ answers ease open ───────────────────────────────────── */
       document.querySelectorAll<HTMLDetailsElement>(".faq__item").forEach((item) => {
         const answer = item.querySelector("p");

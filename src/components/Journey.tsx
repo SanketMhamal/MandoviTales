@@ -5,8 +5,11 @@ import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { site } from "@/content";
 import { Photo } from "./Photo";
+import { InkBandBoat, InkChurch, InkFisherman, InkGoanHouse, InkPalm } from "./Ink";
 
-const MAP = { src: "/images/mandovi-map.svg", thumb: "/images/mandovi-map.svg", w: 2048, h: 1280 };
+const INK = { church: InkChurch, fisherman: InkFisherman, house: InkGoanHouse, palm: InkPalm, boat: InkBandBoat };
+
+const MAP = { src: "/images/mandovi-watercolour.webp", thumb: "/images/mandovi-watercolour-640.webp", w: 2048, h: 1280 };
 const SCALE = 2.2; // ground pixels per map pixel
 const TILT = 60; // degrees the ground leans back
 const LOOK_AHEAD = 0.035;
@@ -183,6 +186,19 @@ export function Journey() {
             <svg className="journey__river" viewBox={`0 0 ${MAP.w} ${MAP.h}`} width={MAP.w * SCALE} height={MAP.h * SCALE}>
               <polyline points={polyline} />
             </svg>
+            {stops.map((stop, i) => {
+              const Drawing = "ink" in stop && stop.ink ? INK[stop.ink as keyof typeof INK] : null;
+              if (!Drawing) return null;
+              const x = stop.at[0] * SCALE + (stop.photos.length > 1 ? -560 : 380);
+              const y = stop.at[1] * SCALE + 120;
+              return (
+                <div key={`ink-${i}`} className="bb bb--ink" data-x={x} data-y={y} style={{ left: x, top: y }}>
+                  <div className="bb__ink">
+                    <Drawing />
+                  </div>
+                </div>
+              );
+            })}
             {stops.flatMap((stop, i) =>
               stop.photos.map((photo, k) => {
                 const spread = (k - (stop.photos.length - 1) / 2) * 380;
@@ -256,7 +272,7 @@ export function Journey() {
 
         {/* Where we are on the whole estuary */}
         <div className="journey__minimap" aria-hidden="true">
-          <img src={MAP.thumb} alt="" width={480} height={300} loading="lazy" decoding="async" />
+          <img src={MAP.thumb} alt="" width={640} height={400} loading="lazy" decoding="async" />
           <svg viewBox={`0 0 ${MAP.w} ${MAP.h}`}>
             <polyline className="journey__route" points={polyline} />
             <polyline className="journey__trail" points={polyline} pathLength={1} />

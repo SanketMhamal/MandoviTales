@@ -3,6 +3,9 @@ import type { CruisePackage } from "@/content";
 import { formatPrice } from "@/lib/format";
 import { Photo } from "./Photo";
 import { ArrowIcon } from "./icons";
+import { InkBandBoat, InkFish, InkSun } from "./Ink";
+
+const DOODLE = { evening: InkSun, day: InkFish, private: InkBandBoat };
 
 type Props = {
   pkg: CruisePackage;
@@ -11,6 +14,7 @@ type Props = {
 };
 
 export function PackageCard({ pkg, cta, featured }: Props) {
+  const Doodle = DOODLE[pkg.category];
   return (
     <Link href={`/packages/${pkg.slug}`} className="card" data-featured={featured || undefined}>
       <div className="card__media">
@@ -23,6 +27,9 @@ export function PackageCard({ pkg, cta, featured }: Props) {
         {pkg.badge && <span className="card__badge">{pkg.badge}</span>}
       </div>
       <div className="card__body">
+        <div className="card__ink">
+          <Doodle />
+        </div>
         <p className="card__meta">
           <span>{pkg.duration}</span>
           <span aria-hidden="true">·</span>

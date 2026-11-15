@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" preserveAspectRatio="none">
+  <filter id="w" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.009" numOctaves="4" seed="15" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="90" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="3" result="soft"/>
+    <feGaussianBlur in="d" stdDeviation="26" result="inner"/>
+    <feComposite in="soft" in2="inner" operator="arithmetic" k1="0" k2="1.25" k3="-0.5" k4="0" result="rim"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="2" seed="20" result="v"/>
+    <feColorMatrix in="v" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1.3 0 0 0 -0.05" result="va"/>
+    <feComposite in="rim" in2="va" operator="in" result="varied"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.45" numOctaves="2" seed="17" result="g"/>
+    <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.18 0.16" result="grain"/>
+    <feComposite in="grain" in2="varied" operator="in" result="gi"/>
+    <feBlend in="varied" in2="gi" mode="multiply"/>
+  </filter>
+  <g filter="url(#w)">
+    <path d="M90 270 C 70 140, 250 90, 400 100 S 730 130, 730 250 S 570 420, 400 410 S 110 380, 90 270 Z" fill="#c6dcae"/>
+    <path d="M90 270 C 70 140, 250 90, 400 100 S 730 130, 730 250 S 570 420, 400 410 S 110 380, 90 270 Z" fill="none" stroke="#86ad70" stroke-width="4" opacity=".4"/>
+  </g>
+</svg>
