@@ -1,12 +1,12 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- the satellite map is a fixed local file, shown at its own sizes. */
+/* eslint-disable @next/next/no-img-element -- the map is a local SVG, crisp at any size. */
 import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { site } from "@/content";
 import { Photo } from "./Photo";
 
-const MAP = { src: "/images/mandovi-satellite.jpg", thumb: "/images/mandovi-satellite-480.jpg", w: 2048, h: 1280 };
+const MAP = { src: "/images/mandovi-map.svg", thumb: "/images/mandovi-map.svg", w: 2048, h: 1280 };
 const SCALE = 2.2; // ground pixels per map pixel
 const TILT = 60; // degrees the ground leans back
 const LOOK_AHEAD = 0.035;
@@ -51,8 +51,8 @@ function headingAt(path: ReturnType<typeof makePath>, u: number) {
 }
 
 /**
- * "Down the Mandovi": the section holds on screen while the camera flies down the river over a
- * satellite image of the estuary. Photos stand up on the map at each stop, come out of the
+ * "Down the Mandovi": the section holds on screen while the camera flies down the river over an
+ * illustrated map of the estuary, traced from satellite imagery. Photos stand up on the map at each stop, come out of the
  * mist, pass by and fall behind; each stop's lines fade in on the left. Without motion it is
  * the map with the stops listed under it.
  */

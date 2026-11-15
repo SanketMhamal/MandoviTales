@@ -106,7 +106,6 @@
   mask-image: radial-gradient(closest-side, #000 82%, transparent 100%);
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  filter: saturate(1.05) contrast(1.02);
 }
 
 .journey__river {

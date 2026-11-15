@@ -28,7 +28,7 @@ The client’s photos load from Cloudinary. See [CLOUDINARY.md](CLOUDINARY.md) f
 
 ## The river journey
 
-The "Down the Mandovi" section flies over a satellite image of the estuary (`public/images/mandovi-satellite.jpg`, Sentinel-2 cloudless 2016 by EOX, CC BY 4.0; keep its credit line). Its stops, their lines and photos, and the boat's path are under `route` in `src/content/site.ts`; map positions are pixels on that image.
+The "Down the Mandovi" section flies over a vector map of the estuary (`public/images/mandovi-map.svg`), traced from Sentinel-2 cloudless 2016 imagery by EOX (CC BY 4.0; keep its credit line). Its stops, their lines and photos, and the boat's path are under `route` in `src/content/site.ts`; map positions are units on that map.
 
 ## Structure
 

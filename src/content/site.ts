@@ -378,15 +378,15 @@ export const site = {
 
   /* ── The river journey (fly down the Mandovi as you scroll) ────────────── */
   /*
-   * The ground is a satellite image of the estuary. `at` is where a stop sits on it, in
-   * pixels of public/images/mandovi-satellite.jpg (2048 × 1280). The boat follows `path`.
+   * The ground is an illustrated map of the estuary traced from satellite imagery. `at` is where
+   * a stop sits on it, in units of public/images/mandovi-map.svg (2048 × 1280). The boat follows `path`.
    * Each stop shows its lines on the left and its photos standing on the map.
    */
   route: {
     title: "Down the Mandovi",
     intro: "From the mangrove islands to the open sea: scroll to sail the river.",
-    mapAlt: "Satellite view of the Mandovi estuary from Divar island to Fort Aguada",
-    mapCredit: "Sentinel-2 cloudless 2016 by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2016), CC BY 4.0",
+    mapAlt: "Illustrated map of the Mandovi estuary from Divar island to Fort Aguada",
+    mapCredit: "Map traced from Sentinel-2 cloudless 2016 by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2016), CC BY 4.0",
     path: [
       [1997, 256], [1843, 389], [1690, 532], [1536, 625], [1420, 615], [1250, 640], [1120, 680], [1000, 670],
       [900, 640], [850, 680], [800, 740], [700, 790], [560, 800], [400, 840], [200, 900], [60, 960],
