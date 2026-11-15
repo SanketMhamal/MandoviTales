@@ -9,6 +9,7 @@ import { PackageCard } from "@/components/PackageCard";
 import { Enquiry } from "@/components/Enquiry";
 import { MobileBar } from "@/components/MobileBar";
 import { WhatsAppIcon } from "@/components/icons";
+import { Waves } from "@/components/Sea";
 
 export const dynamicParams = false;
 
@@ -46,7 +47,7 @@ export default async function PackagePage({ params }: PageProps<"/packages/[slug
 
   return (
     <>
-      <section className="pkg-hero" aria-labelledby="pkg-title" data-enter>
+      <section className="pkg-hero" aria-labelledby="pkg-title" data-port="Overview">
         <div className="wrap pkg-hero__grid">
           <div className="pkg-hero__text">
             <nav aria-label="Breadcrumb" className="crumbs">
@@ -76,14 +77,16 @@ export default async function PackagePage({ params }: PageProps<"/packages/[slug
               <p className="price price--lg">
                 {pkg.price !== null ? (
                   <>
-                    <span className="price__amount">{formatPrice(pkg.price)}</span>
+                    <span className="price__amount" data-count={pkg.price}>
+                      {formatPrice(pkg.price)}
+                    </span>
                     <span className="price__note"> {pkg.priceNote}</span>
                   </>
                 ) : (
                   <span className="price__amount price__amount--text">{pkg.priceNote}</span>
                 )}
               </p>
-              <a className="btn btn--primary" href={whatsappLink(bookMessage)} target="_blank" rel="noopener noreferrer">
+              <a className="btn btn--primary" data-magnetic href={whatsappLink(bookMessage)} target="_blank" rel="noopener noreferrer">
                 <WhatsAppIcon />
                 {site.booking.cta}
               </a>
@@ -95,25 +98,28 @@ export default async function PackagePage({ params }: PageProps<"/packages/[slug
         </div>
       </section>
 
-      <section className="section" aria-labelledby="day-title">
+      <section className="section" aria-labelledby="day-title" data-port="The cruise">
         <div className="wrap pkg-detail">
           <div>
-            <h2 id="day-title" className="h2">
+            <h2 id="day-title" className="h2" data-split>
               How the cruise runs
             </h2>
-            <ol className="timeline">
-              {pkg.itinerary.map((step) => (
-                <li key={`${step.time}-${step.title}`}>
-                  <span className="timeline__time">{step.time}</span>
-                  <div>
-                    <h3 className="timeline__title">{step.title}</h3>
-                    {step.detail && <p>{step.detail}</p>}
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <div className="timeline-wrap" data-timeline>
+              <span className="timeline__line" aria-hidden="true" />
+              <ol className="timeline">
+                {pkg.itinerary.map((step) => (
+                  <li key={`${step.time}-${step.title}`}>
+                    <span className="timeline__time">{step.time}</span>
+                    <div>
+                      <h3 className="timeline__title">{step.title}</h3>
+                      {step.detail && <p>{step.detail}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
-          <aside className="pkg-aside">
+          <aside className="pkg-aside" data-reveal>
             <h2 className="h3">What’s included</h2>
             <ul className="ticks">
               {pkg.includes.map((item) => (
@@ -130,30 +136,34 @@ export default async function PackagePage({ params }: PageProps<"/packages/[slug
         </div>
         <div className="wrap pkg-gallery">
           {pkg.gallery.map((photo) => (
-            <div key={photo.image} className="pkg-gallery__item">
+            <div key={photo.image} className="pkg-gallery__item" data-develop>
               <Photo {...photo} aspect="3:2" sizes="(min-width: 768px) 50vw, 100vw" />
             </div>
           ))}
         </div>
       </section>
 
-      <section className="section section--river" aria-labelledby="plan-title">
+      <section className="section section--river" aria-labelledby="plan-title" data-port="Plan">
+        <Waves className="section__waves section__waves--top" flip />
         <div className="wrap plan">
           <header className="plan__head">
-            <h2 id="plan-title" className="h2">
+            <h2 id="plan-title" className="h2" data-split>
               {site.enquiry.title}
             </h2>
             <p className="section__intro">{site.enquiry.intro}</p>
             <p className="plan__reassure">{site.booking.reassurance}</p>
           </header>
-          <Enquiry defaultSlug={pkg.slug} />
+          <div data-reveal>
+            <Enquiry defaultSlug={pkg.slug} />
+          </div>
         </div>
+        <Waves className="section__waves" />
       </section>
 
-      <section className="section" aria-labelledby="more-title">
+      <section className="section" aria-labelledby="more-title" data-port="More cruises">
         <div className="wrap">
           <header className="section__head">
-            <h2 id="more-title" className="h2">
+            <h2 id="more-title" className="h2" data-split>
               More cruises
             </h2>
           </header>

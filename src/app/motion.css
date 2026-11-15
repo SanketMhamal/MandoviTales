@@ -1,0 +1,730 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOTION LAYER  (driven by src/components/Motion.tsx and Voyage.tsx)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --voyage-h: 70px;
+}
+
+/* Before the motion layer has run, hold the hero's words back so they can rise in. */
+.motion:not(.motion-ran) .hero__content > *,
+.motion:not(.motion-ran) .scroll-cue,
+.motion:not(.motion-ran) .pkg-hero__text > *,
+.motion:not(.motion-ran) .pkg-hero__media {
+  opacity: 0;
+}
+
+/* Scroll progress along the top edge */
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 60;
+  height: 3px;
+  background: linear-gradient(90deg, #ffb37d, var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* ─── Waves ───────────────────────────────────────────────────────────────── */
+.waves {
+  position: relative;
+  height: 64px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.waves[data-flip] {
+  transform: scaleY(-1);
+}
+
+.waves__layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  animation: drift var(--sea-speed, 14s) linear infinite;
+}
+
+.waves__layer--1 {
+  opacity: 0.35;
+  animation-duration: calc(var(--sea-speed, 14s) * 1.6);
+  animation-direction: reverse;
+}
+
+.waves__layer--2 {
+  height: 78%;
+  opacity: 0.6;
+  animation-duration: calc(var(--sea-speed, 14s) * 1.15);
+}
+
+.waves__layer--3 {
+  height: 55%;
+}
+
+.waves path {
+  fill: var(--wave, var(--bg));
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero__waves {
+  position: absolute;
+  inset: auto 0 -1px;
+  z-index: 1;
+  height: clamp(48px, 7vw, 90px);
+  --wave: var(--bg);
+}
+
+.section--river {
+  position: relative;
+  overflow: hidden;
+}
+
+.section__waves {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 56px;
+  --wave: var(--bg);
+}
+
+.section__waves--top {
+  inset: -1px 0 auto;
+}
+
+/* ─── Hero extras ─────────────────────────────────────────────────────────── */
+.hero__bg {
+  will-change: transform;
+}
+
+.scroll-cue {
+  position: absolute;
+  right: var(--gutter);
+  bottom: clamp(72px, 11vw, 130px);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  writing-mode: vertical-rl;
+}
+
+@media (min-width: 900px) {
+  .scroll-cue {
+    display: inline-flex;
+  }
+}
+
+.scroll-cue__line {
+  position: relative;
+  width: 1px;
+  height: 64px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  animation: cue 2.2s var(--ease) infinite;
+}
+
+@keyframes cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* ─── Statement ───────────────────────────────────────────────────────────── */
+.statement {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: clamp(80px, 10vw, 140px);
+}
+
+.statement__text {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1rem + 5.2vw, 5.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.hl-accent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ─── Marquee ─────────────────────────────────────────────────────────────── */
+.marquee {
+  overflow: hidden;
+  padding-block: 28px;
+  border-block: 1px solid var(--line);
+  background: var(--bg);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: drift 48s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.marquee li {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  padding-right: clamp(20px, 3vw, 40px);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.75rem, 1rem + 2.6vw, 3.25rem);
+  white-space: nowrap;
+}
+
+.marquee__boat {
+  width: clamp(44px, 4vw, 60px);
+  height: auto;
+  color: var(--ink);
+}
+
+/* ─── Photo chapters ──────────────────────────────────────────────────────── */
+.chapters {
+  position: relative;
+  background: var(--ink);
+  color: #f2ede4;
+  padding-block: clamp(72px, 10vw, 120px);
+}
+
+.chapters .h2 {
+  color: #fff;
+}
+
+.chapters__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.chapters__dots {
+  display: none;
+}
+
+.chapters__list {
+  display: grid;
+  gap: 40px;
+}
+
+.chapters__frame {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.chapters__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chapters__panel {
+  display: grid;
+  gap: 6px;
+  max-width: 44ch;
+  margin-top: 16px;
+}
+
+.chapters__panel p:last-child {
+  color: #c6d2cf;
+}
+
+.chapters__time {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #ffb37d;
+  font-variant-numeric: tabular-nums;
+}
+
+.chapters__num {
+  display: inline-block;
+  min-width: 2ch;
+  margin-right: 6px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Pinned story when the motion layer is on */
+.motion .chapters {
+  height: calc(var(--n) * 75vh + 100vh);
+  padding: 0;
+}
+
+.motion .chapters__stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  padding: calc(var(--header-h) + 24px) 0 calc(var(--voyage-h) + 24px);
+}
+
+.motion .chapters__dots {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chapters__dots li {
+  width: 44px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.chapters__dot {
+  display: block;
+  height: 100%;
+  background: #ffb37d;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.chapters__dot[data-first] {
+  transform: none;
+}
+
+.motion .chapters__body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.motion .chapters__list {
+  position: absolute;
+  inset: 0 var(--gutter);
+  display: block;
+}
+
+.motion .chapters__item {
+  position: absolute;
+  inset: 0;
+}
+
+.motion .chapters__frame {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+}
+
+.motion .chapters__frame[data-first] {
+  clip-path: none;
+}
+
+.motion .chapters__panel {
+  position: absolute;
+  left: clamp(12px, 2vw, 28px);
+  bottom: clamp(12px, 2vw, 28px);
+  z-index: 2;
+  max-width: min(440px, calc(100% - 24px));
+  margin: 0;
+  padding: clamp(18px, 2vw, 26px);
+  background: rgba(245, 239, 228, 0.96);
+  color: var(--ink);
+  border-radius: var(--radius-sm);
+  opacity: 0;
+}
+
+.motion .chapters__panel[data-first] {
+  opacity: 1;
+}
+
+.motion .chapters__panel p:last-child {
+  color: var(--muted);
+}
+
+.motion .chapters__time {
+  color: var(--accent);
+}
+
+.motion .chapters__num {
+  color: var(--muted);
+}
+
+/* ─── Route river ─────────────────────────────────────────────────────────── */
+.route::before {
+  display: none;
+}
+
+.river {
+  position: relative;
+}
+
+.river__svg,
+.river__boat {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .river__svg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    overflow: visible;
+  }
+  .river__path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.7;
+  }
+  .river__boat {
+    display: block;
+    position: absolute;
+    top: -26px;
+    left: 0;
+    z-index: 2;
+    width: 64px;
+    color: var(--ink);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .river__boat svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.route__marker span {
+  transition: background-color 0.4s var(--ease), color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.route__marker span.is-passed {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.12);
+}
+
+/* ─── Package timeline ────────────────────────────────────────────────────── */
+.timeline-wrap {
+  position: relative;
+  margin-top: 32px;
+}
+
+.timeline-wrap .timeline {
+  margin-top: 0;
+}
+
+.timeline__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--accent);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+html:not(.motion) .timeline__line {
+  transform: none;
+}
+
+.timeline li::before {
+  transition: background-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.timeline li.is-passed::before,
+html:not(.motion) .timeline li::before {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+/* ─── Closing sun ─────────────────────────────────────────────────────────── */
+.closing {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-bottom: clamp(120px, 14vw, 200px);
+}
+
+.closing__sun {
+  position: absolute;
+  right: 8%;
+  bottom: 0;
+  z-index: -1;
+  width: clamp(260px, 38vw, 560px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, #ffd08a 0%, #f59a52 45%, rgba(245, 154, 82, 0) 70%);
+  opacity: 0.85;
+  transform: translateY(20%);
+}
+
+.closing__inner {
+  position: relative;
+}
+
+.closing__waves {
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 72px;
+  --wave: var(--ink);
+}
+
+/* ─── Enquiry figure ──────────────────────────────────────────────────────── */
+.enquiry__figure {
+  display: inline-block;
+  transform-origin: left center;
+}
+
+/* ─── Voyage strip ────────────────────────────────────────────────────────── */
+body {
+  padding-bottom: var(--voyage-h);
+}
+
+.voyage {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 45;
+  height: var(--voyage-h);
+  --pad: clamp(16px, 3vw, 40px);
+  --ship-w: 108px;
+}
+
+html.menu-open .voyage {
+  display: none;
+}
+
+.voyage__waves {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.voyage__waves .waves__layer--1 {
+  opacity: 0.6;
+}
+
+.voyage__waves .waves__layer--1 path {
+  fill: #2b6b70;
+}
+
+.voyage__waves .waves__layer--2 {
+  height: 80%;
+  opacity: 0.9;
+}
+
+.voyage__waves .waves__layer--2 path {
+  fill: #17545a;
+}
+
+.voyage__waves .waves__layer--3 {
+  height: 60%;
+}
+
+.voyage__waves .waves__layer--3 path {
+  fill: #0e3a3f;
+}
+
+.voyage__ports {
+  position: absolute;
+  inset: auto var(--pad) 0;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.voyage__ports li {
+  position: absolute;
+  bottom: 2px;
+  left: calc(var(--at) * 100%);
+  transform: translateX(-50%);
+}
+
+.voyage__ports a {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  text-decoration: none;
+}
+
+.voyage__buoy {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+  transition: background-color 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+[data-reached] > a .voyage__buoy {
+  background: #ffb37d;
+}
+
+[data-current] > a .voyage__buoy {
+  transform: scale(1.4);
+  box-shadow: 0 0 0 4px rgba(255, 179, 125, 0.3), 0 0 12px 2px rgba(255, 179, 125, 0.6);
+}
+
+.voyage__label {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.voyage__ports a:hover .voyage__label,
+.voyage__ports a:focus-visible .voyage__label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.voyage__ship {
+  position: absolute;
+  bottom: 20px;
+  left: calc(var(--pad) + var(--x, 0) * (100% - 2 * var(--pad) - var(--ship-w)));
+  width: var(--ship-w);
+  color: #fbf8f2;
+  --boat-window: #12262b;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+.voyage__flip {
+  position: relative;
+  transition: transform 0.6s var(--ease);
+}
+
+.voyage__ship[data-heading="west"] .voyage__flip {
+  transform: scaleX(-1);
+}
+
+.voyage__pitch {
+  transform-origin: 50% 85%;
+}
+
+.voyage__boat {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.voyage__wake {
+  position: absolute;
+  right: 88%;
+  bottom: 4px;
+  width: 90px;
+  height: 5px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85));
+  transform-origin: right center;
+  transform: scaleX(0.4);
+  opacity: 0.35;
+}
+
+.boat__flag {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: flag 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes flag {
+  from {
+    transform: scaleY(1) skewY(0deg);
+  }
+  to {
+    transform: scaleY(0.8) skewY(-8deg);
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --voyage-h: 52px;
+  }
+  .voyage {
+    --ship-w: 72px;
+  }
+  .voyage__ship {
+    bottom: 14px;
+  }
+  .voyage__ports a {
+    pointer-events: none;
+  }
+  .voyage__label {
+    display: none;
+  }
+  .mobile-bar {
+    bottom: var(--voyage-h);
+    padding-bottom: 12px;
+  }
+}
+
+/* Under reduced motion everything rests: no loops, no drift. */
+@media (prefers-reduced-motion: reduce) {
+  .waves__layer,
+  .marquee__track,
+  .scroll-cue__line::after,
+  .boat__flag {
+    animation: none;
+  }
+  .marquee {
+    overflow-x: auto;
+  }
+}

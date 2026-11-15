@@ -107,6 +107,54 @@ export const site = {
       image: "stand-in/f96460762",
       alt: "The sun setting over the Mandovi river, with a boat crossing the light",
     } satisfies Photo,
+    scrollCue: "Scroll",
+  },
+
+  /* ── Statement (big words that light up as you scroll) ─────────────────── */
+  statement: {
+    /** Wrap the word(s) to colour in the accent with *asterisks*. */
+    text: "Twenty minutes downriver the Mandovi meets the sea, the band strikes up, and the sky over Reis Magos turns *pink*.",
+  },
+
+  /* ── Moving strip of places and moments ────────────────────────────────── */
+  marquee: [
+    "Sunset at Reis Magos",
+    "Dolphins off Aguada",
+    "Fish curry rice",
+    "Dekhni on deck",
+    "Mangroves of Chorao",
+    "Panjim by night",
+  ],
+
+  /* ── An evening on the river (photo story, one chapter at a time) ──────── */
+  chapters: {
+    title: "An evening on the Sunset Cruise",
+    items: [
+      {
+        time: "5:30 pm",
+        title: "Boarding at Panjim jetty",
+        text: "Find a seat by the rail with a welcome drink while the river turns gold.",
+        photo: { image: "stand-in/f64185538", alt: "A boat crossing the wide Mandovi river at Panjim" },
+      },
+      {
+        time: "6:00 pm",
+        title: "Downriver to the sea",
+        text: "Past the old secretariat and the Betim ferries, with the hills of Porvorim to the north.",
+        photo: { image: "stand-in/f150084598", alt: "The wide Mandovi river seen from the Porvorim hills" },
+      },
+      {
+        time: "6:20 pm",
+        title: "Sunset at the river mouth",
+        text: "The engine slows off Reis Magos, the band plays, and the troupe takes the deck.",
+        photo: { image: "stand-in/f105192704", alt: "Pink and orange sky over Goa at sunset, palms in silhouette" },
+      },
+      {
+        time: "7:00 pm",
+        title: "Panjim by night",
+        text: "Back upriver as the city lights come on along the water.",
+        photo: { image: "stand-in/f126506020", alt: "Lit boats reflected on the dark Mandovi river at night" },
+      },
+    ],
   },
 
   /* ── Cruises section ───────────────────────────────────────────────────── */

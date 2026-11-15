@@ -34,7 +34,9 @@ export function PackageCard({ pkg, cta, featured }: Props) {
           <p className="price">
             {pkg.price !== null ? (
               <>
-                <span className="price__amount">{formatPrice(pkg.price)}</span>
+                <span className="price__amount" data-count={pkg.price}>
+                  {formatPrice(pkg.price)}
+                </span>
                 <span className="price__note"> {pkg.priceNote}</span>
               </>
             ) : (

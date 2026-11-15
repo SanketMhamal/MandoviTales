@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Hanken_Grotesk, Newsreader } from "next/font/google";
 import { site } from "@/content";
 import { imageSet } from "@/lib/images";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Motion } from "@/components/Motion";
+import { Voyage } from "@/components/Voyage";
 import "./globals.css";
+import "./motion.css";
 
 const serif = Newsreader({
   variable: "--font-serif",
@@ -48,8 +52,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en-IN" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
       <head>
+        {/* Turn on the motion layer before first paint, unless the visitor prefers reduced motion. */}
+        <Script id="motion-flag" strategy="beforeInteractive">
+          {"if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');setTimeout(function(){document.documentElement.classList.add('motion-ran')},4000)"}
+        </Script>
         {process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="" />}
       </head>
       <body>
@@ -59,6 +67,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <Voyage />
+        <Motion />
       </body>
     </html>
   );

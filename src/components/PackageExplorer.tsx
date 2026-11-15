@@ -1,6 +1,8 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
+import { animate, stagger, utils } from "animejs";
 import { site } from "@/content";
 import { PackageCard } from "./PackageCard";
 
@@ -26,6 +28,38 @@ export function PackageExplorer() {
 export function PackageExplorerView({ filter, onSelect }: { filter: string; onSelect?: (id: string) => void }) {
   const { filters, cardCta } = site.cruisesSection;
   const shown = filter === "all" ? site.packages : site.packages.filter((p) => p.category === filter);
+  const listRef = useRef<HTMLUListElement>(null);
+  const first = useRef(true);
+
+  // When the filter changes, the new set of cards sails in from the right.
+  useEffect(() => {
+    const list = listRef.current;
+    if (!document.documentElement.classList.contains("motion") || !list) return;
+    if (first.current) {
+      // First time: the cards rise in a wave when the list comes on screen.
+      first.current = false;
+      const items = Array.from(list.children);
+      utils.set(items, { opacity: 0, y: 60, scale: 0.97 });
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          io.disconnect();
+          animate(items, { opacity: 1, y: 0, scale: 1, duration: 1200, delay: stagger(110), ease: "outExpo" });
+        },
+        { rootMargin: "0px 0px -12% 0px" },
+      );
+      io.observe(list);
+      return () => io.disconnect();
+    }
+    animate(list.children, {
+      opacity: [0, 1],
+      x: [80, 0],
+      rotate: [2, 0],
+      duration: 900,
+      delay: stagger(90),
+      ease: "outExpo",
+    });
+  }, [filter]);
 
   return (
     <>
@@ -51,7 +85,7 @@ export function PackageExplorerView({ filter, onSelect }: { filter: string; onSe
         {shown.length} {shown.length === 1 ? "cruise" : "cruises"} shown
       </p>
 
-      <ul className="cards" data-filter={filter}>
+      <ul className="cards" data-filter={filter} data-self-animate ref={listRef}>
         {shown.map((pkg, i) => (
           <li key={pkg.slug}>
             <PackageCard pkg={pkg} cta={cardCta} featured={filter === "all" && i < 2} />

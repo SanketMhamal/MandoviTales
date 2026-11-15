@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { animate, utils } from "animejs";
 import { site } from "@/content";
 import { formatPrice, packageMessage, whatsappLink } from "@/lib/format";
 import { WhatsAppIcon } from "./icons";
@@ -48,6 +49,37 @@ function Stepper({ id, name, label, value, min, max, onChange }: { id: string; n
       </div>
     </div>
   );
+}
+
+/** The estimate rolls to each new figure instead of jumping. */
+function Total({ value }: { value: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const shown = useRef(value);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!document.documentElement.classList.contains("motion")) {
+      el.textContent = formatPrice(value);
+      shown.current = value;
+      return;
+    }
+    const counter = { v: shown.current };
+    const anim = animate(counter, {
+      v: value,
+      duration: 700,
+      ease: "outExpo",
+      modifier: utils.round(0),
+      onUpdate: () => {
+        el.textContent = formatPrice(counter.v);
+        shown.current = counter.v;
+      },
+    });
+    animate(el, { scale: [1.08, 1], duration: 500, ease: "outBack" });
+    return () => {
+      anim.pause();
+    };
+  }, [value]);
+  return <span ref={ref} className="enquiry__figure">{formatPrice(value)}</span>;
 }
 
 export function Enquiry({ defaultSlug }: { defaultSlug?: string }) {
@@ -103,7 +135,7 @@ export function Enquiry({ defaultSlug }: { defaultSlug?: string }) {
       <div className="enquiry__summary">
         <p className="enquiry__label">{e.estimateLabel}</p>
         <p className="enquiry__total" aria-live="polite">
-          {total !== null ? formatPrice(total) : pkg.priceNote}
+          {total !== null ? <Total value={total} /> : pkg.priceNote}
         </p>
         <p className="enquiry__note">{e.estimateNote}</p>
         <button type="submit" className="btn btn--primary btn--block">

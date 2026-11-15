@@ -1668,7 +1668,7 @@ p, li, dd {
 
 #cruises,
 #on-board {
-  --h: 2;
+  min-height: 0;
 }
 
 @media (min-width: 1024px) {
