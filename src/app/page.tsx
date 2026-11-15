@@ -65,7 +65,7 @@ export default function Home() {
             {onBoard.items.map((item, i) => (
               <li key={item.title} className="onboard__item" data-lead={i === 0 || undefined}>
                 <div className="onboard__media">
-                  <Photo {...item.photo} sizes={i === 0 ? "(min-width: 1024px) 58vw, 100vw" : "(min-width: 1024px) 40vw, 100vw"} />
+                  <Photo {...item.photo} sizes={i === 0 ? "(min-width: 1024px) 80vw, 100vw" : "(min-width: 1024px) 40vw, 100vw"} />
                 </div>
                 <div className="onboard__text">
                   <h3 className="h3">{item.title}</h3>
@@ -93,7 +93,7 @@ export default function Home() {
                   <span>{String(i + 1).padStart(2, "0")}</span>
                 </div>
                 <div className="route__media">
-                  <Photo {...stop.photo} aspect="4:5" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" />
+                  <Photo {...stop.photo} aspect="4:5" sizes="(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw" />
                 </div>
                 <h3 className="h3">{stop.name}</h3>
                 <p>{stop.text}</p>
@@ -140,7 +140,7 @@ export default function Home() {
             </a>
           </div>
           <div className="visit__media">
-            <Photo {...visit.photo} aspect="4:5" sizes="(min-width: 1024px) 45vw, 100vw" />
+            <Photo {...visit.photo} aspect="1:1" sizes="(min-width: 1024px) 60vw, 100vw" />
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@
   --surface: #ece3d3;     /* deeper sand */
   --card: #fbf8f2;
   --ink: #12262b;         /* river at night */
-  --muted: #4b5b5e;
+  --muted: #3e4d50;
   --line: rgba(18, 38, 43, 0.14);
   --river: #0e3a3f;       /* deep teal band */
   --river-ink: #eaf1ee;
@@ -286,6 +286,10 @@ p, li, dd {
   color: var(--accent);
 }
 
+.header:not([data-solid="true"]) .header__inner {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+}
+
 .header:not([data-solid="true"]) .logo__mark {
   color: #ffcf9e;
 }
@@ -466,7 +470,7 @@ p, li, dd {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(8, 26, 30, 0.55) 0%, rgba(8, 26, 30, 0) 22%),
+    linear-gradient(180deg, rgba(8, 26, 30, 0.7) 0%, rgba(8, 26, 30, 0.25) 16%, rgba(8, 26, 30, 0) 30%),
     linear-gradient(0deg, rgba(8, 26, 30, 0.82) 0%, rgba(8, 26, 30, 0.35) 45%, rgba(8, 26, 30, 0) 75%);
 }
 
@@ -476,7 +480,7 @@ p, li, dd {
 }
 
 .hero__eyebrow {
-  color: #ffd9b3;
+  color: #ffe9d4;
 }
 
 .hero__title {
@@ -583,10 +587,19 @@ p, li, dd {
   display: flex;
   gap: 8px;
   margin-bottom: 28px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  margin-inline: calc(-1 * var(--gutter));
-  padding-inline: var(--gutter);
+  flex-wrap: wrap;
+  padding-block: 4px;
+}
+
+@media (max-width: 639px) {
+  /* One scrolling row on phones */
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+  }
 }
 
 .filters::-webkit-scrollbar {
@@ -623,7 +636,11 @@ p, li, dd {
 .chip__count {
   font-size: 0.8125rem;
   font-variant-numeric: tabular-nums;
-  opacity: 0.6;
+  color: var(--muted);
+}
+
+.chip[aria-pressed="true"] .chip__count {
+  color: rgba(245, 239, 228, 0.8);
 }
 
 /* ─── Cards ───────────────────────────────────────────────────────────────── */
@@ -1634,5 +1651,28 @@ p, li, dd {
   .cards > li:first-child:nth-last-child(-n + 2),
   .cards > li:first-child:nth-last-child(-n + 2) ~ li {
     grid-column: span 3;
+  }
+}
+
+/* ─── One section per screen ──────────────────────────────────────────────── */
+/* Each section fills one screen (or two, via --h: 2), its content centred. */
+.section,
+.closing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(var(--h, 1) * 100vh);
+  min-height: calc(var(--h, 1) * 100svh);
+  padding-block: clamp(64px, 8vw, 112px);
+}
+
+#cruises,
+#on-board {
+  --h: 2;
+}
+
+@media (min-width: 1024px) {
+  .visit__media {
+    aspect-ratio: 1;
   }
 }

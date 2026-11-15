@@ -1,0 +1,301 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Mandovi Tales, home" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e10]: Mandovi Tales
+      - navigation "Main" [ref=e11]:
+        - list [ref=e12]:
+          - listitem [ref=e13]:
+            - link "Cruises" [ref=e14] [cursor=pointer]:
+              - /url: /#cruises
+          - listitem [ref=e15]:
+            - link "On board" [ref=e16] [cursor=pointer]:
+              - /url: /#on-board
+          - listitem [ref=e17]:
+            - link "The route" [ref=e18] [cursor=pointer]:
+              - /url: /#route
+          - listitem [ref=e19]:
+            - link "Visit" [ref=e20] [cursor=pointer]:
+              - /url: /#visit
+          - listitem [ref=e21]:
+            - link "FAQ" [ref=e22] [cursor=pointer]:
+              - /url: /#faq
+      - link "Book on WhatsApp" [ref=e23] [cursor=pointer]:
+        - /url: https://wa.me/910000000000?text=Hi%20Mandovi%20Tales%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20cruises.
+  - main [ref=e26]:
+    - region "River cruises on the Mandovi, from sunset to supper." [ref=e27]:
+      - img "The sun setting over the Mandovi river, with a boat crossing the light" [ref=e28]
+      - generic [ref=e30]:
+        - paragraph [ref=e31]: Panjim · Goa
+        - heading "River cruises on the Mandovi, from sunset to supper." [level=1] [ref=e32]
+        - paragraph [ref=e33]: Five ways to see Goa from the water, every day of the season. Pick a cruise, send us a WhatsApp, and we’ll keep a seat on deck for you.
+        - generic [ref=e34]:
+          - link "See the cruises" [ref=e35] [cursor=pointer]:
+            - /url: "#cruises"
+          - link "Book on WhatsApp" [ref=e38] [cursor=pointer]:
+            - /url: https://wa.me/910000000000?text=Hi%20Mandovi%20Tales%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20cruises.
+        - paragraph [ref=e41]: Daily from Panjim jetty · from ₹600
+    - region "Cruises and prices" [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - heading "Cruises and prices" [level=2] [ref=e45]
+          - paragraph [ref=e46]: Every cruise leaves from the same jetty in Panjim. Prices are per adult and include taxes; children aged 5 to 12 pay half.
+        - group "Filter cruises" [ref=e47]:
+          - button "All cruises 5" [pressed] [ref=e48] [cursor=pointer]:
+            - text: All cruises
+            - generic [ref=e49]: "5"
+          - button "Sunset & evening 2" [ref=e50] [cursor=pointer]:
+            - text: Sunset & evening
+            - generic [ref=e51]: "2"
+          - button "Daytime 2" [ref=e52] [cursor=pointer]:
+            - text: Daytime
+            - generic [ref=e53]: "2"
+          - button "Private 1" [ref=e54] [cursor=pointer]:
+            - text: Private
+            - generic [ref=e55]: "1"
+        - paragraph [ref=e56]: 5 cruises shown
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Most booked 1 hour 6:00 pm Sunset Cruise An hour on the open deck as the sun drops behind Reis Magos. ₹600 per adult View cruise" [ref=e59] [cursor=pointer]:
+              - /url: /packages/sunset-cruise
+              - generic [ref=e60]: Most booked
+              - generic [ref=e62]:
+                - paragraph [ref=e63]:
+                  - generic [ref=e64]: 1 hour
+                  - generic [aria-hidden] [ref=e65]: ·
+                  - generic [ref=e66]: 6:00 pm
+                - heading "Sunset Cruise" [level=3] [ref=e67]
+                - paragraph [ref=e68]: An hour on the open deck as the sun drops behind Reis Magos.
+                - generic [ref=e69]:
+                  - paragraph [ref=e70]:
+                    - text: ₹600
+                    - generic [ref=e71]: per adult
+                  - generic [ref=e72]: View cruise
+          - listitem [ref=e75]:
+            - link "2 hours 8:00 pm Dinner Cruise Two hours on the night river with a Goan buffet and live band. ₹1,800 per adult View cruise" [ref=e76] [cursor=pointer]:
+              - /url: /packages/dinner-cruise
+              - generic [ref=e78]:
+                - paragraph [ref=e79]:
+                  - generic [ref=e80]: 2 hours
+                  - generic [aria-hidden] [ref=e81]: ·
+                  - generic [ref=e82]: 8:00 pm
+                - heading "Dinner Cruise" [level=3] [ref=e83]
+                - paragraph [ref=e84]: Two hours on the night river with a Goan buffet and live band.
+                - generic [ref=e85]:
+                  - paragraph [ref=e86]:
+                    - text: ₹1,800
+                    - generic [ref=e87]: per adult
+                  - generic [ref=e88]: View cruise
+          - listitem [ref=e91]:
+            - link "2 hours 8:30 am Dolphin Cruise A morning run to the river mouth to look for humpback dolphins. ₹900 per adult View cruise" [ref=e92] [cursor=pointer]:
+              - /url: /packages/dolphin-cruise
+              - generic [ref=e94]:
+                - paragraph [ref=e95]:
+                  - generic [ref=e96]: 2 hours
+                  - generic [aria-hidden] [ref=e97]: ·
+                  - generic [ref=e98]: 8:30 am
+                - heading "Dolphin Cruise" [level=3] [ref=e99]
+                - paragraph [ref=e100]: A morning run to the river mouth to look for humpback dolphins.
+                - generic [ref=e101]:
+                  - paragraph [ref=e102]:
+                    - text: ₹900
+                    - generic [ref=e103]: per adult
+                  - generic [ref=e104]: View cruise
+          - listitem [ref=e107]:
+            - link "6½ hours 9:30 am Backwater Day Cruise A full day upriver through mangroves, islands and a spice farm. ₹2,400 per adult View cruise" [ref=e108] [cursor=pointer]:
+              - /url: /packages/backwater-cruise
+              - generic [ref=e110]:
+                - paragraph [ref=e111]:
+                  - generic [ref=e112]: 6½ hours
+                  - generic [aria-hidden] [ref=e113]: ·
+                  - generic [ref=e114]: 9:30 am
+                - heading "Backwater Day Cruise" [level=3] [ref=e115]
+                - paragraph [ref=e116]: A full day upriver through mangroves, islands and a spice farm.
+                - generic [ref=e117]:
+                  - paragraph [ref=e118]:
+                    - text: ₹2,400
+                    - generic [ref=e119]: per adult
+                  - generic [ref=e120]: View cruise
+          - listitem [ref=e123]:
+            - link "2 hours or more Any time you choose Private Charter The whole boat for birthdays, proposals, office outings and weddings. from ₹25,000 for up to 30 guests View cruise" [ref=e124] [cursor=pointer]:
+              - /url: /packages/private-charter
+              - generic [ref=e126]:
+                - paragraph [ref=e127]:
+                  - generic [ref=e128]: 2 hours or more
+                  - generic [aria-hidden] [ref=e129]: ·
+                  - generic [ref=e130]: Any time you choose
+                - heading "Private Charter" [level=3] [ref=e131]
+                - paragraph [ref=e132]: The whole boat for birthdays, proposals, office outings and weddings.
+                - generic [ref=e133]:
+                  - paragraph [ref=e134]: from ₹25,000 for up to 30 guests
+                  - generic [ref=e135]: View cruise
+    - region "On board" [ref=e138]:
+      - generic [ref=e139]:
+        - generic [ref=e140]:
+          - heading "On board" [level=2] [ref=e141]
+          - paragraph [ref=e142]: Every evening cruise carries a live band and our own folk troupe. The kitchen is Goan.
+        - list [ref=e143]:
+          - listitem [ref=e144]:
+            - img "Dancers in bright Goan dress performing a folk dance" [ref=e146]
+            - generic [ref=e147]:
+              - heading "Music and dance" [level=3] [ref=e148]
+              - paragraph [ref=e149]: Konkani songs and the dekhni, fugdi and corridinho, danced on deck by our troupe of eight.
+          - listitem [ref=e150]:
+            - img "A Goan fish curry thali with rice, mackerel and sides" [ref=e152]
+            - generic [ref=e153]:
+              - heading "Goan food" [level=3] [ref=e154]
+              - paragraph [ref=e155]: Fish curry rice, prawn balchão and bebinca, cooked the morning of your cruise.
+          - listitem [ref=e156]:
+            - img "A boat crossing the wide Mandovi river at Panjim" [ref=e158]
+            - generic [ref=e159]:
+              - heading "Two decks" [level=3] [ref=e160]
+              - paragraph [ref=e161]: An open upper deck for the view and a covered lower deck for the shade or the rain.
+    - region "What you’ll see on the river" [ref=e162]:
+      - generic [ref=e163]:
+        - generic [ref=e164]:
+          - heading "What you’ll see on the river" [level=2] [ref=e165]
+          - paragraph [ref=e166]: Panjim to the sea is twenty minutes downriver; the islands are an hour up.
+        - list [ref=e167]:
+          - listitem [ref=e168]:
+            - generic [ref=e170]: "01"
+            - img "The white church of Our Lady of the Immaculate Conception, Panjim" [ref=e172]
+            - heading "Panjim waterfront" [level=3] [ref=e173]
+            - paragraph [ref=e174]: The old Portuguese quarter, the secretariat and the church steps.
+          - listitem [ref=e175]:
+            - generic [ref=e177]: "02"
+            - img "The wide Mandovi river seen from the Porvorim hills" [ref=e179]
+            - heading "Reis Magos" [level=3] [ref=e180]
+            - paragraph [ref=e181]: The red-walled fort on the Betim bank, built in 1551.
+          - listitem [ref=e182]:
+            - generic [ref=e184]: "03"
+            - img "The old lighthouse on Fort Aguada" [ref=e186]
+            - heading "Fort Aguada" [level=3] [ref=e187]
+            - paragraph [ref=e188]: The lighthouse at the river mouth, where the dolphins feed.
+          - listitem [ref=e189]:
+            - generic [ref=e191]: "04"
+            - img "A fisherman paddling a canoe on the Mandovi" [ref=e193]
+            - heading "Chorao and Divar" [level=3] [ref=e194]
+            - paragraph [ref=e195]: Mangrove islands upriver, home to the Salim Ali bird sanctuary.
+    - region "Plan your cruise" [ref=e196]:
+      - generic [ref=e197]:
+        - generic [ref=e198]:
+          - heading "Plan your cruise" [level=2] [ref=e199]
+          - paragraph [ref=e200]: Choose a cruise, a date and how many of you are coming. We’ll open WhatsApp with the message written.
+          - paragraph [ref=e201]: Replies within the hour, 9 am – 9 pm. Pay at the jetty or by UPI.
+        - generic [ref=e202]:
+          - generic [ref=e203]:
+            - generic [ref=e204]:
+              - generic [ref=e205]: Cruise
+              - combobox "Cruise" [ref=e206]:
+                - option "Sunset Cruise · 6:00 pm" [selected]
+                - option "Dinner Cruise · 8:00 pm"
+                - option "Dolphin Cruise · 8:30 am"
+                - option "Backwater Day Cruise · 9:30 am"
+                - option "Private Charter · Any time you choose"
+            - generic [ref=e207]:
+              - generic [ref=e208]: Date
+              - textbox "Date" [ref=e209]
+            - generic [ref=e210]:
+              - generic [ref=e211]: Adults
+              - generic [ref=e212]:
+                - button "Fewer adults" [ref=e213] [cursor=pointer]: −
+                - spinbutton "Adults" [ref=e214]: "2"
+                - button "More adults" [ref=e215] [cursor=pointer]: +
+            - generic [ref=e216]:
+              - generic [ref=e217]: Children (5–12)
+              - generic [ref=e218]:
+                - button "Fewer children (5–12)" [disabled] [ref=e219]: −
+                - spinbutton "Children (5–12)" [ref=e220]: "0"
+                - button "More children (5–12)" [ref=e221] [cursor=pointer]: +
+          - generic [ref=e222]:
+            - paragraph [ref=e223]: Estimated total
+            - paragraph [ref=e224]: ₹1,200
+            - paragraph [ref=e225]: Pay at the jetty or by UPI. We confirm every booking on WhatsApp.
+            - button "Send on WhatsApp" [ref=e226] [cursor=pointer]
+    - region "Getting to the jetty" [ref=e229]:
+      - generic [ref=e230]:
+        - generic [ref=e231]:
+          - heading "Getting to the jetty" [level=2] [ref=e232]
+          - paragraph [ref=e233]: Panjim jetty
+          - paragraph [ref=e234]: D. B. Marg, Panjim, Goa
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - term [ref=e237]: Season
+              - definition [ref=e238]: October to May; sunset and dinner cruises run all year
+            - generic [ref=e239]:
+              - term [ref=e240]: Parking
+              - definition [ref=e241]: Paid parking beside the jetty
+            - generic [ref=e242]:
+              - term [ref=e243]: From Calangute
+              - definition [ref=e244]: About 30 minutes by taxi
+            - generic [ref=e245]:
+              - term [ref=e246]: Accessibility
+              - definition [ref=e247]: Lower deck has step-free boarding; tell us when you book
+          - link "Get directions" [ref=e248] [cursor=pointer]:
+            - /url: https://www.google.com/maps/search/?api=1&query=Santa+Monica+Jetty+Panaji+Goa
+        - img "A wide green stretch of a Goan river" [ref=e253]
+    - region "Questions, answered" [ref=e254]:
+      - generic [ref=e255]:
+        - heading "Questions, answered" [level=2] [ref=e256]
+        - generic [ref=e257]:
+          - group [ref=e258]:
+            - generic "How do I book?" [ref=e259] [cursor=pointer]
+          - group [ref=e262]:
+            - generic "How do I pay?" [ref=e263] [cursor=pointer]
+          - group [ref=e266]:
+            - generic "Can I cancel?" [ref=e267] [cursor=pointer]
+          - group [ref=e270]:
+            - generic "What happens if it rains?" [ref=e271] [cursor=pointer]
+          - group [ref=e274]:
+            - generic "Are children welcome?" [ref=e275] [cursor=pointer]
+          - group [ref=e278]:
+            - generic "Is there a bar on board?" [ref=e279] [cursor=pointer]
+    - region "Tonight’s sunset leaves at 6:00 pm." [ref=e282]:
+      - generic [ref=e283]:
+        - heading "Tonight’s sunset leaves at 6:00 pm." [level=2] [ref=e284]
+        - paragraph [ref=e285]: Send us a message and we’ll hold your seats.
+        - link "Book on WhatsApp" [ref=e286] [cursor=pointer]:
+          - /url: https://wa.me/910000000000?text=Hi%20Mandovi%20Tales%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20cruises.
+  - contentinfo [ref=e289]:
+    - generic [ref=e290]:
+      - generic [ref=e291]:
+        - paragraph [ref=e292]: Mandovi Tales
+        - paragraph [ref=e293]: Mandovi Tales runs river cruises on the Mandovi from Panjim, Goa.
+      - navigation "Cruises" [ref=e294]:
+        - paragraph [ref=e295]: Cruises
+        - list [ref=e296]:
+          - listitem [ref=e297]:
+            - link "Sunset Cruise" [ref=e298] [cursor=pointer]:
+              - /url: /packages/sunset-cruise
+          - listitem [ref=e299]:
+            - link "Dinner Cruise" [ref=e300] [cursor=pointer]:
+              - /url: /packages/dinner-cruise
+          - listitem [ref=e301]:
+            - link "Dolphin Cruise" [ref=e302] [cursor=pointer]:
+              - /url: /packages/dolphin-cruise
+          - listitem [ref=e303]:
+            - link "Backwater Day Cruise" [ref=e304] [cursor=pointer]:
+              - /url: /packages/backwater-cruise
+          - listitem [ref=e305]:
+            - link "Private Charter" [ref=e306] [cursor=pointer]:
+              - /url: /packages/private-charter
+      - generic [ref=e307]:
+        - paragraph [ref=e308]: Visit
+        - paragraph [ref=e309]: Panjim jettyD. B. Marg, Panjim, Goa
+        - list [ref=e310]:
+          - listitem [ref=e311]:
+            - link "WhatsApp" [ref=e312] [cursor=pointer]:
+              - /url: https://wa.me/910000000000?text=Hi%20Mandovi%20Tales%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20cruises.
+          - listitem [ref=e313]:
+            - link "Instagram" [ref=e314] [cursor=pointer]:
+              - /url: https://instagram.com/
+          - listitem [ref=e315]:
+            - link "Google reviews" [ref=e316] [cursor=pointer]:
+              - /url: https://www.google.com/maps
+    - generic [ref=e317]:
+      - paragraph [ref=e318]: © 2026 Mandovi Tales
+      - paragraph [ref=e319]: "Stand-in photographs: Wikimedia Commons, by Vyacheslav Argenberg, Klaus Nahr, Frederick Noronha, Nikhilb239, Manuel D’Cruz, Joegoauk Goa, Vijay Tiwari, Sanjay Gorivale, Sailko, Santoshsellathurai and goanfishcurryrice; CC BY and CC BY-SA."
+  - button "Open Next.js Dev Tools" [ref=e325] [cursor=pointer]
