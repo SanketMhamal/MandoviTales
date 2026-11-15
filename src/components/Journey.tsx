@@ -10,8 +10,9 @@ import { InkBandBoat, InkChurch, InkFisherman, InkGoanHouse, InkPalm } from "./I
 const INK = { church: InkChurch, fisherman: InkFisherman, house: InkGoanHouse, palm: InkPalm, boat: InkBandBoat };
 
 const MAP = { src: "/images/mandovi-watercolour.webp", thumb: "/images/mandovi-watercolour-640.webp", w: 2048, h: 1280 };
-const SCALE = 2.2; // ground pixels per map pixel
-const TILT = 60; // degrees the ground leans back
+const SCALE = 1.9; // ground pixels per map pixel (keeps the ground under 4096px, the texture limit on many phones)
+const TILT = 60;
+const ZOOM = 1.16; // a closer camera, so the smaller ground still fills the view // degrees the ground leans back
 const LOOK_AHEAD = 0.035;
 
 type Pt = [number, number];
@@ -110,7 +111,7 @@ export function Journey() {
 
       const w = section.clientWidth;
       const h = window.innerHeight;
-      ground.style.transform = `translate3d(${w / 2}px, ${h * 0.76}px, 0) rotateX(${TILT}deg) rotateZ(${heading}rad) translate3d(${-x}px, ${-y}px, 0)`;
+      ground.style.transform = `translate3d(${w / 2}px, ${h * 0.76}px, 0) scale(${ZOOM}) rotateX(${TILT}deg) rotateZ(${heading}rad) translate3d(${-x}px, ${-y}px, 0)`;
 
       const cos = Math.cos(heading);
       const sin = Math.sin(heading);

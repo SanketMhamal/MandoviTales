@@ -159,14 +159,27 @@ export function Motion() {
         let swell = 0;
         let dir = 1;
         let raf = 0;
+        // Touch screens keep the gentle bob only: changing a page-wide variable every frame
+        // restyles every floating letter, which phones can't keep up with while scrolling.
+        const coarse = window.matchMedia("(pointer: coarse)").matches;
+        let shown = "0";
         const settle = () => {
           swell *= 0.92;
-          root.style.setProperty("--swell", swell.toFixed(3));
-          root.style.setProperty("--swell-dir", String(dir));
+          // in steps of 0.1, so letters restyle a few times per gust, not every frame
+          const step = (Math.round(swell * 10) / 10).toFixed(1);
+          if (step !== shown) {
+            shown = step;
+            root.style.setProperty("--swell", step);
+            root.style.setProperty("--swell-dir", String(dir));
+          }
           raf = swell > 0.01 ? requestAnimationFrame(settle) : 0;
-          if (!raf) root.style.setProperty("--swell", "0");
+          if (!raf && shown !== "0") {
+            shown = "0";
+            root.style.setProperty("--swell", "0");
+          }
         };
         const onScrollSwell = () => {
+          if (coarse) return;
           const now = performance.now();
           const dy = window.scrollY - lastY;
           const v = Math.abs(dy) / Math.max(16, now - lastT);

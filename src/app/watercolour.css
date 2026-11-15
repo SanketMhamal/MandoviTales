@@ -658,3 +658,16 @@ html,
 body {
   overflow-x: clip;
 }
+
+/* Phones: the standing photos in the river flight use a plain soft mask; the torn SVG mask
+   is re-rasterised every frame as they turn, which is too heavy for phone GPUs. */
+@media (max-width: 767px), (pointer: coarse) {
+  .bb__card img,
+  .bb__card[data-tilt="r"] img {
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+  }
+  .bb__card {
+    filter: none;
+  }
+}

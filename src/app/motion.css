@@ -639,8 +639,9 @@ html.menu-open .voyage {
 .voyage__ship {
   position: absolute;
   bottom: 20px;
-  left: calc(var(--pad) + var(--x, 0) * (100% - 2 * var(--pad) - var(--ship-w)));
+  left: 0;
   width: var(--ship-w);
+  will-change: transform;
   color: #fbf8f2;
   --boat-window: #12262b;
   pointer-events: none;
@@ -660,6 +661,13 @@ html.menu-open .voyage {
   transform-origin: 50% 85%;
 }
 
+/* The strip's waves are moved by Voyage.tsx (steady drift plus a push from scrolling),
+   not by the CSS loop, so changing speed never makes them jump. */
+.voyage__waves .waves__layer {
+  animation: none;
+  will-change: transform;
+}
+
 .voyage__boat {
   display: block;
   width: 100%;
@@ -677,6 +685,7 @@ html.menu-open .voyage {
   transform-origin: right center;
   transform: scaleX(0.4);
   opacity: 0.35;
+  will-change: transform, opacity;
 }
 
 .boat__flag {
